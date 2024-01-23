@@ -15,7 +15,9 @@ shader_parameter/holeRadius = 30.0
 shader_parameter/penumbra = 5.0
 
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 6
 script = ExtResource("1_2py5h")
+pass_through_layers = 4
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_8io4h")

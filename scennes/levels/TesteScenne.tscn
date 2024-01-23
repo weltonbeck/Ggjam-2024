@@ -62,18 +62,10 @@ rotation = 3.14159
 scale = Vector2(17.7287, 11.8927)
 texture = ExtResource("2_nm6gr")
 
-[node name="Player" parent="." instance=ExtResource("1_0w30n")]
-position = Vector2(152, 136)
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
-limit_left = 0
-position_smoothing_enabled = true
-drag_top_margin = 0.5
-editor_draw_drag_margin = true
-
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(80, 152)
 scale = Vector2(10, 1)
+collision_layer = 2
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
@@ -86,6 +78,7 @@ metadata/_edit_group_ = true
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
 position = Vector2(272, 152)
 scale = Vector2(10, 1)
+collision_layer = 2
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
@@ -98,6 +91,7 @@ metadata/_edit_group_ = true
 [node name="StaticBody2D3" type="StaticBody2D" parent="."]
 position = Vector2(176, 168)
 scale = Vector2(10, 1)
+collision_layer = 2
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
@@ -113,6 +107,7 @@ curve = SubResource("Curve2D_3ifiq")
 
 [node name="AnimatableBody2D" type="AnimatableBody2D" parent="Path2D"]
 position = Vector2(64, 120)
+collision_layer = 4
 
 [node name="Sprite2D" type="Sprite2D" parent="Path2D/AnimatableBody2D"]
 scale = Vector2(2, 1)
@@ -134,3 +129,12 @@ libraries = {
 "": SubResource("AnimationLibrary_xi7gi")
 }
 autoplay = "platformer"
+
+[node name="Player" parent="." instance=ExtResource("1_0w30n")]
+position = Vector2(152, 136)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+limit_left = 0
+position_smoothing_enabled = true
+drag_top_margin = 0.5
+editor_draw_drag_margin = true

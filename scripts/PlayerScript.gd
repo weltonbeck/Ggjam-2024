@@ -13,6 +13,8 @@ var wait_jump = false
 @export var coyote_time = 0.1
 @export var jump_buffering_time = 0.1
 
+@export_flags_2d_physics var pass_through_layers = 3
+
 func _ready():
 	jump_strength = -((jump_height * 2) / max_time_to_peak)
 	gravity = (jump_height * 2) / pow(max_time_to_peak, 2)
@@ -22,6 +24,7 @@ func _physics_process(delta):
 	walk()
 	move_and_slide()
 	jump()
+	pass_through()
 	
 	#faz o shader cinza seguir
 	$GrayscaleCanvas/ColorRect.material.set("shader_parameter/holeCenter", get_global_transform_with_canvas().origin)	
@@ -56,3 +59,10 @@ func jump():
 	# cancel jump
 	if Input.is_action_just_released("jump") && !is_on_floor() && velocity.y < 0.0:
 		velocity.y = 0.0
+
+func pass_through():
+	var layer_number = (log(pass_through_layers) / log(2)) + 1
+	if Input.is_action_just_pressed("ui_down"):
+		set_collision_mask_value(layer_number, false)
+	elif Input.is_action_just_released("ui_down"):
+		set_collision_mask_value(layer_number, true)
