@@ -1,18 +1,26 @@
-[gd_scene load_steps=4 format=3 uid="uid://dxe7bdit0ai40"]
+[gd_scene load_steps=6 format=3 uid="uid://necpaxyych8j"]
 
-[ext_resource type="Script" path="res://scripts/MenuScript.gd" id="1_jx2ti"]
-[ext_resource type="FontFile" uid="uid://di2b06201e75l" path="res://fonts/Kenney Pixel.ttf" id="2_0c21t"]
+[ext_resource type="Script" path="res://scripts/PauseMenuScript.gd" id="1_pqro2"]
+[ext_resource type="FontFile" uid="uid://di2b06201e75l" path="res://fonts/Kenney Pixel.ttf" id="2_yleuy"]
 
 [sub_resource type="Theme" id="Theme_23wp1"]
-default_font = ExtResource("2_0c21t")
+default_font = ExtResource("2_yleuy")
 default_font_size = 32
 
-[node name="MenuScenne" type="Node2D"]
-script = ExtResource("1_jx2ti")
+[sub_resource type="InputEventAction" id="InputEventAction_0d86y"]
+action = &"ui_cancel"
+
+[sub_resource type="Shortcut" id="Shortcut_bn4tn"]
+events = [SubResource("InputEventAction_0d86y")]
+
+[node name="PauseMenuScenne" type="Node2D"]
+script = ExtResource("1_pqro2")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
-[node name="StartGameButton" type="Button" parent="CanvasLayer"]
+[node name="ResumeButton" type="Button" parent="CanvasLayer"]
+process_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -26,9 +34,11 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_default_cursor_shape = 2
 theme = SubResource("Theme_23wp1")
-text = "Start Game"
+shortcut = SubResource("Shortcut_bn4tn")
+text = "Resume"
 
 [node name="QuitGameButton" type="Button" parent="CanvasLayer"]
+process_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -44,5 +54,5 @@ mouse_default_cursor_shape = 2
 theme = SubResource("Theme_23wp1")
 text = "Quit Game"
 
-[connection signal="button_down" from="CanvasLayer/StartGameButton" to="." method="_on_start_game"]
+[connection signal="pressed" from="CanvasLayer/ResumeButton" to="." method="_on_unpause_game"]
 [connection signal="button_down" from="CanvasLayer/QuitGameButton" to="." method="_on_quit_game"]

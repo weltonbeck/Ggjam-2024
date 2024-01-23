@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://dkq6681syi4cf"]
+[gd_scene load_steps=10 format=3 uid="uid://dkq6681syi4cf"]
 
 [ext_resource type="PackedScene" uid="uid://cfesdyp3bvgey" path="res://scennes/players/PlayerScenne.tscn" id="1_0w30n"]
+[ext_resource type="PackedScene" uid="uid://necpaxyych8j" path="res://scennes/levels/PauseMenuScenne.tscn" id="1_2rvjb"]
 [ext_resource type="Texture2D" uid="uid://dsh6xt8sbefyk" path="res://sprites/characters/blue.png" id="2_nm6gr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8bjdt"]
@@ -8,7 +9,7 @@ size = Vector2(16, 16)
 
 [sub_resource type="Curve2D" id="Curve2D_3ifiq"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 64, 120, 0, 0, 0, 0, 64, 32, 0, 0, 0, 0, 216, 32)
+"points": PackedVector2Array(0, 0, 0, 0, 64, 120, 0, 0, 0, 0, 64, 56, 0, 0, 0, 0, 216, 56)
 }
 point_count = 3
 
@@ -110,6 +111,7 @@ position = Vector2(64, 120)
 collision_layer = 4
 
 [node name="Sprite2D" type="Sprite2D" parent="Path2D/AnimatableBody2D"]
+modulate = Color(0.584314, 0.87451, 0.603922, 1)
 scale = Vector2(2, 1)
 texture = ExtResource("2_nm6gr")
 
@@ -138,3 +140,5 @@ limit_left = 0
 position_smoothing_enabled = true
 drag_top_margin = 0.5
 editor_draw_drag_margin = true
+
+[node name="PauseMenuScenne" parent="." instance=ExtResource("1_2rvjb")]
