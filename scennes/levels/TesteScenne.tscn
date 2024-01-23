@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://dkq6681syi4cf"]
 
-[ext_resource type="PackedScene" uid="uid://cfesdyp3bvgey" path="res://scennes/players/Player.tscn" id="1_0w30n"]
+[ext_resource type="PackedScene" uid="uid://cfesdyp3bvgey" path="res://scennes/players/PlayerScenne.tscn" id="1_0w30n"]
 [ext_resource type="Texture2D" uid="uid://dsh6xt8sbefyk" path="res://sprites/characters/blue.png" id="2_nm6gr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8bjdt"]
@@ -55,8 +55,21 @@ _data = {
 
 [node name="TesteScenne" type="Node2D"]
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.909804, 0.65098, 0.247059, 1)
+position = Vector2(168, 128)
+rotation = 3.14159
+scale = Vector2(17.7287, 11.8927)
+texture = ExtResource("2_nm6gr")
+
 [node name="Player" parent="." instance=ExtResource("1_0w30n")]
-position = Vector2(158, 79)
+position = Vector2(152, 136)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+limit_left = 0
+position_smoothing_enabled = true
+drag_top_margin = 0.5
+editor_draw_drag_margin = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(80, 152)
@@ -99,7 +112,7 @@ position = Vector2(0, 8)
 curve = SubResource("Curve2D_3ifiq")
 
 [node name="AnimatableBody2D" type="AnimatableBody2D" parent="Path2D"]
-position = Vector2(102.677, 32)
+position = Vector2(64, 120)
 
 [node name="Sprite2D" type="Sprite2D" parent="Path2D/AnimatableBody2D"]
 scale = Vector2(2, 1)

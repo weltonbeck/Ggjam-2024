@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://cfesdyp3bvgey"]
+
+[ext_resource type="Script" path="res://scripts/PlayerScript.gd" id="1_2py5h"]
+[ext_resource type="Texture2D" uid="uid://n8jfcv4nfkla" path="res://sprites/characters/red.png" id="2_8io4h"]
+[ext_resource type="Shader" path="res://shaders/GrayscaleShader.gdshader" id="3_bx7h2"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pnsbl"]
+radius = 8.0
+height = 16.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vj7qe"]
+shader = ExtResource("3_bx7h2")
+shader_parameter/holeCenter = Vector2(80, 60)
+shader_parameter/holeRadius = 30.0
+shader_parameter/penumbra = 5.0
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_2py5h")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_8io4h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_pnsbl")
+
+[node name="CoyoteTimer" type="Timer" parent="."]
+
+[node name="JumpBufferingTimer" type="Timer" parent="."]
+
+[node name="GrayscaleCanvas" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="GrayscaleCanvas"]
+material = SubResource("ShaderMaterial_vj7qe")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

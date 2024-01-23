@@ -23,6 +23,9 @@ func _physics_process(delta):
 	move_and_slide()
 	jump()
 	
+	#faz o shader cinza seguir
+	$GrayscaleCanvas/ColorRect.material.set("shader_parameter/holeCenter", get_global_transform_with_canvas().origin)	
+	
 func walk():
 	var direction = Input.get_axis("ui_left", "ui_right")
 	if direction:
