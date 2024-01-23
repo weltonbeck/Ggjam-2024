@@ -1,0 +1,123 @@
+[gd_scene load_steps=9 format=3 uid="uid://dkq6681syi4cf"]
+
+[ext_resource type="PackedScene" uid="uid://cfesdyp3bvgey" path="res://scennes/players/Player.tscn" id="1_0w30n"]
+[ext_resource type="Texture2D" uid="uid://dsh6xt8sbefyk" path="res://sprites/characters/blue.png" id="2_nm6gr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8bjdt"]
+size = Vector2(16, 16)
+
+[sub_resource type="Curve2D" id="Curve2D_3ifiq"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 64, 120, 0, 0, 0, 0, 64, 32, 0, 0, 0, 0, 216, 32)
+}
+point_count = 3
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wh5q4"]
+size = Vector2(32, 16)
+
+[sub_resource type="Animation" id="Animation_whijd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_a7175"]
+resource_name = "platformer"
+length = 6.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3, 6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xi7gi"]
+_data = {
+"RESET": SubResource("Animation_whijd"),
+"platformer": SubResource("Animation_a7175")
+}
+
+[node name="TesteScenne" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_0w30n")]
+position = Vector2(158, 79)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(80, 152)
+scale = Vector2(10, 1)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_8bjdt")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+texture = ExtResource("2_nm6gr")
+metadata/_edit_group_ = true
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(272, 152)
+scale = Vector2(10, 1)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+shape = SubResource("RectangleShape2D_8bjdt")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2"]
+texture = ExtResource("2_nm6gr")
+metadata/_edit_group_ = true
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(176, 168)
+scale = Vector2(10, 1)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+shape = SubResource("RectangleShape2D_8bjdt")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D3"]
+texture = ExtResource("2_nm6gr")
+metadata/_edit_group_ = true
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(0, 8)
+curve = SubResource("Curve2D_3ifiq")
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="Path2D"]
+position = Vector2(102.677, 32)
+
+[node name="Sprite2D" type="Sprite2D" parent="Path2D/AnimatableBody2D"]
+scale = Vector2(2, 1)
+texture = ExtResource("2_nm6gr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/AnimatableBody2D"]
+shape = SubResource("RectangleShape2D_wh5q4")
+one_way_collision = true
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(64, 120)
+rotates = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Path2D/PathFollow2D"]
+remote_path = NodePath("../../AnimatableBody2D")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Path2D"]
+libraries = {
+"": SubResource("AnimationLibrary_xi7gi")
+}
+autoplay = "platformer"

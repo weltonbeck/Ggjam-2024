@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfesdyp3bvgey"]
+
+[ext_resource type="Texture2D" uid="uid://n8jfcv4nfkla" path="res://sprites/characters/red.png" id="1_w2orc"]
+[ext_resource type="Script" path="res://scripts/Player.gd" id="1_xlnbk"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pnsbl"]
+radius = 8.0
+height = 16.0
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_xlnbk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_w2orc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_pnsbl")
+
+[node name="CoyoteTimer" type="Timer" parent="."]
+
+[node name="JumpBufferingTimer" type="Timer" parent="."]
