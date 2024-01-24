@@ -5,7 +5,7 @@ var can_pause = true
 func _ready():
 	$CanvasLayer.visible = false
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("ui_cancel") && get_tree().paused == false && can_pause:
 		can_pause = false
 		$CanvasLayer.visible = true

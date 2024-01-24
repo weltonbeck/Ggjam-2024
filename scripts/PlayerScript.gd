@@ -4,7 +4,7 @@ const AIR_FRICTION = 0.5
 
 var gravity
 var jump_strength
-@export var speed = 150.0
+@export var speed = 100.0
 @export var jump_height = 16 * 3
 @export var max_time_to_peak = 0.3
 
@@ -14,6 +14,12 @@ var wait_jump = false
 @export var jump_buffering_time = 0.1
 
 @export_flags_2d_physics var pass_through_layers = 3
+
+enum {
+	IDLE, WALK, JUMP, FALL, PICK
+}
+
+var status = IDLE
 
 func _ready():
 	jump_strength = -((jump_height * 2) / max_time_to_peak)
@@ -26,15 +32,24 @@ func _physics_process(delta):
 	jump()
 	pass_through()
 	
+	animation()
+	
 	#faz o shader cinza seguir
 	$GrayscaleCanvas/ColorRect.material.set("shader_parameter/holeCenter", get_global_transform_with_canvas().origin)	
 	
 func walk():
 	var direction = Input.get_axis("ui_left", "ui_right")
+	#flip
+	if direction != 0:
+		$AnimatedSprite2D.flip_h = direction == -1
 	if direction:
 		velocity.x = lerp(velocity.x, direction * speed, AIR_FRICTION)
+		if is_on_floor() && status != JUMP && status != FALL:
+			status = WALK
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
+		if is_on_floor() && status != JUMP && status != FALL:
+			status = IDLE
 
 func jump():
 	# coyote time
@@ -52,6 +67,7 @@ func jump():
 		wait_jump = false
 		
 	if wait_jump && can_jump:
+		status = JUMP
 		velocity.y = jump_strength
 		can_jump = false
 		wait_jump = false
@@ -59,6 +75,9 @@ func jump():
 	# cancel jump
 	if Input.is_action_just_released("jump") && !is_on_floor() && velocity.y < 0.0:
 		velocity.y = 0.0
+	
+	if !is_on_floor() && velocity.y > 0:
+		status = FALL
 
 func pass_through():
 	var layer_number = (log(pass_through_layers) / log(2)) + 1
@@ -66,3 +85,19 @@ func pass_through():
 		set_collision_mask_value(layer_number, false)
 	elif Input.is_action_just_released("ui_down"):
 		set_collision_mask_value(layer_number, true)
+
+func animation():
+	if status == IDLE:
+		$AnimatedSprite2D.play("idle")
+	elif status == WALK:
+		$AnimatedSprite2D.play("walk")
+	elif status == JUMP && $AnimatedSprite2D.animation != "jump":
+		$AnimatedSprite2D.play("jump")
+	elif status == FALL && is_on_floor():
+		$AnimatedSprite2D.play("fall_finish")
+		await $AnimatedSprite2D.animation_finished
+		status = IDLE
+	elif status == FALL:
+		if $AnimatedSprite2D.animation == "jump":
+			await $AnimatedSprite2D.animation_finished
+		$AnimatedSprite2D.play("fall")
