@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-GameControler="*res://scennes/levels/GameControlerScenne.tscn"
+GameControler="*res://scennes/commons/GameControlerScenne.tscn"
 
 [display]
 
@@ -26,6 +26,10 @@ window/size/viewport_height=180
 window/size/mode=2
 window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
+
+[editor]
+
+movie_writer/movie_file="C:/Users/welton/Downloads/meujogo.avi"
 
 [input]
 
@@ -41,6 +45,8 @@ jump={
 2d_physics/layer_1="Player"
 2d_physics/layer_2="Floor"
 2d_physics/layer_3="PassThroughPlatformer"
+2d_physics/layer_4="Collectable"
+2d_physics/layer_5="Hazard"
 
 [physics]
 

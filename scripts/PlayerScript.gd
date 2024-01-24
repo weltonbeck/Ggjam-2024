@@ -67,10 +67,7 @@ func jump():
 		wait_jump = false
 		
 	if wait_jump && can_jump:
-		status = JUMP
-		velocity.y = jump_strength
-		can_jump = false
-		wait_jump = false
+		forceJump(jump_strength)
 		
 	# cancel jump
 	if Input.is_action_just_released("jump") && !is_on_floor() && velocity.y < 0.0:
@@ -78,6 +75,12 @@ func jump():
 	
 	if !is_on_floor() && velocity.y > 0:
 		status = FALL
+		
+func forceJump(strength):
+	status = JUMP
+	velocity.y = strength
+	can_jump = false
+	wait_jump = false
 
 func pass_through():
 	var layer_number = (log(pass_through_layers) / log(2)) + 1
@@ -94,7 +97,7 @@ func animation():
 	elif status == JUMP && $AnimatedSprite2D.animation != "jump":
 		$AnimatedSprite2D.play("jump")
 	elif status == FALL && is_on_floor():
-		$AnimatedSprite2D.play("fall_finish")
+		$AnimatedSprite2D.play("grounded")
 		await $AnimatedSprite2D.animation_finished
 		status = IDLE
 	elif status == FALL:

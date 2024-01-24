@@ -1,8 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://dkq6681syi4cf"]
+[gd_scene load_steps=13 format=3 uid="uid://dkq6681syi4cf"]
 
 [ext_resource type="PackedScene" uid="uid://cfesdyp3bvgey" path="res://scennes/players/PlayerScenne.tscn" id="1_0w30n"]
-[ext_resource type="PackedScene" uid="uid://necpaxyych8j" path="res://scennes/levels/PauseMenuScenne.tscn" id="1_2rvjb"]
-[ext_resource type="Texture2D" uid="uid://dsh6xt8sbefyk" path="res://sprites/characters/blue.png" id="2_nm6gr"]
+[ext_resource type="PackedScene" uid="uid://necpaxyych8j" path="res://scennes/commons/PauseMenuScenne.tscn" id="1_2rvjb"]
+[ext_resource type="Texture2D" uid="uid://bid0ea23ihli1" path="res://sprites/placeholder.png" id="1_rgj41"]
+[ext_resource type="PackedScene" uid="uid://fcsueiwhey7l" path="res://scennes/commons/CollectableScenne.tscn" id="2_0q76s"]
+[ext_resource type="PackedScene" uid="uid://ci038wthwjwqj" path="res://scennes/commons/HudScenne.tscn" id="3_xkcf0"]
+[ext_resource type="PackedScene" uid="uid://cu2egtu013fty" path="res://scennes/commons/CoilSpringScenne.tscn" id="6_fpfnn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8bjdt"]
 size = Vector2(16, 16)
@@ -57,15 +60,15 @@ _data = {
 [node name="TesteScenne" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.909804, 0.65098, 0.247059, 1)
+modulate = Color(1, 1, 0.745098, 1)
 position = Vector2(168, 128)
 rotation = 3.14159
 scale = Vector2(17.7287, 11.8927)
-texture = ExtResource("2_nm6gr")
+texture = ExtResource("1_rgj41")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(80, 152)
-scale = Vector2(10, 1)
+position = Vector2(176, 160)
+scale = Vector2(25, 1)
 collision_layer = 2
 metadata/_edit_group_ = true
 
@@ -73,33 +76,8 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_8bjdt")
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
-texture = ExtResource("2_nm6gr")
-metadata/_edit_group_ = true
-
-[node name="StaticBody2D2" type="StaticBody2D" parent="."]
-position = Vector2(272, 152)
-scale = Vector2(10, 1)
-collision_layer = 2
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-shape = SubResource("RectangleShape2D_8bjdt")
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2"]
-texture = ExtResource("2_nm6gr")
-metadata/_edit_group_ = true
-
-[node name="StaticBody2D3" type="StaticBody2D" parent="."]
-position = Vector2(176, 168)
-scale = Vector2(10, 1)
-collision_layer = 2
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
-shape = SubResource("RectangleShape2D_8bjdt")
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D3"]
-texture = ExtResource("2_nm6gr")
+modulate = Color(0.0980392, 0, 0.780392, 1)
+texture = ExtResource("1_rgj41")
 metadata/_edit_group_ = true
 
 [node name="Path2D" type="Path2D" parent="."]
@@ -111,9 +89,9 @@ position = Vector2(64, 120)
 collision_layer = 4
 
 [node name="Sprite2D" type="Sprite2D" parent="Path2D/AnimatableBody2D"]
-modulate = Color(0.584314, 0.87451, 0.603922, 1)
+modulate = Color(0.231373, 0.313726, 0.705882, 1)
 scale = Vector2(2, 1)
-texture = ExtResource("2_nm6gr")
+texture = ExtResource("1_rgj41")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/AnimatableBody2D"]
 shape = SubResource("RectangleShape2D_wh5q4")
@@ -132,14 +110,20 @@ libraries = {
 }
 autoplay = "platformer"
 
+[node name="Collectable" parent="." instance=ExtResource("2_0q76s")]
+position = Vector2(208, 136)
+
+[node name="Collectable2" parent="." instance=ExtResource("2_0q76s")]
+position = Vector2(240, 136)
+
 [node name="Player" parent="." instance=ExtResource("1_0w30n")]
 position = Vector2(152, 136)
+metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, -56)
 scale = Vector2(-45.5963, -195.826)
 limit_left = 0
-position_smoothing_enabled = true
 position_smoothing_speed = 20.0
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
@@ -147,4 +131,9 @@ drag_top_margin = 0.5
 drag_bottom_margin = 0.1
 editor_draw_drag_margin = true
 
+[node name="HudScenne" parent="." instance=ExtResource("3_xkcf0")]
+
 [node name="PauseMenuScenne" parent="." instance=ExtResource("1_2rvjb")]
+
+[node name="CoilSpring" parent="." instance=ExtResource("6_fpfnn")]
+position = Vector2(264, 152)
