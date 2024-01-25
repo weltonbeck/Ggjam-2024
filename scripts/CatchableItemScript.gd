@@ -1,5 +1,6 @@
 extends Area2D
 
+var direction = 1
 var playerHover = false
 var collected = false
 var hurled = false
@@ -20,6 +21,10 @@ func _physics_process(delta):
 			tween.stop()
 			followPlayer = true
 		elif followPlayer:
+			if player.get_node("AnimatedSprite2D").flip_h :
+				direction = -1
+			else:
+				direction = 1
 			set_global_position( player.get_node("PickMarker2D").global_position)
 	if hurled:
 		onHurled(delta)
@@ -40,6 +45,8 @@ func dropItem():
 
 func _on_body_entered(body):
 	if body.is_in_group("Floor") && hurled:
+		queue_free()
+	if body.is_in_group("Enemy") && hurled:
 		queue_free()
 	if body.is_in_group("Player"):
 		playerHover = true

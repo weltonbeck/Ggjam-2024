@@ -1,0 +1,97 @@
+[gd_scene load_steps=13 format=3 uid="uid://do47r03cieii2"]
+
+[ext_resource type="Script" path="res://scripts/CatchableDentureScript.gd" id="1_kg1fe"]
+[ext_resource type="Texture2D" uid="uid://bvf0xngjpl55j" path="res://sprites/collectables/dentadurinha.png" id="2_tnnm6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8a81c"]
+atlas = ExtResource("2_tnnm6")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dak6d"]
+atlas = ExtResource("2_tnnm6")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o1gul"]
+atlas = ExtResource("2_tnnm6")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_28muw"]
+atlas = ExtResource("2_tnnm6")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lojvg"]
+atlas = ExtResource("2_tnnm6")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0b8lt"]
+atlas = ExtResource("2_tnnm6")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_amexp"]
+atlas = ExtResource("2_tnnm6")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5wn3t"]
+atlas = ExtResource("2_tnnm6")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_31hur"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8a81c")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dak6d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o1gul")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_28muw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lojvg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0b8lt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_amexp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5wn3t")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exbih"]
+size = Vector2(12, 11)
+
+[node name="CatchableDenture" type="Area2D" groups=["Bullet"]]
+collision_layer = 64
+collision_mask = 35
+script = ExtResource("1_kg1fe")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -7)
+sprite_frames = SubResource("SpriteFrames_31hur")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4.5)
+shape = SubResource("RectangleShape2D_exbih")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
