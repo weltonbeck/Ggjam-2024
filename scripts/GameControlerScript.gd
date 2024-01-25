@@ -1,6 +1,7 @@
 extends Node2D
 
 signal hudGetTicketSignal
+signal hudTakeDamageSignal
 
 func changeScenne(newScenne):
 	$TransitionCanvas/AnimationPlayer.play("fade_out")
@@ -12,3 +13,6 @@ func changeScenne(newScenne):
 	
 func hudGetTicket():
 	emit_signal("hudGetTicketSignal")
+	
+func hudTakeDamage():
+	emit_signal("hudTakeDamageSignal")

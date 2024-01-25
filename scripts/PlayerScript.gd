@@ -11,14 +11,17 @@ var jump_strength
 var can_move = true
 var can_jump = false
 var wait_jump = false
-@export var coyote_time = 0.1
-@export var jump_buffering_time = 0.1
+@export var coyote_time = 0.02
+@export var jump_buffering_time = 0.02
 
 @export_flags_2d_physics var pass_through_layers = 3
 
 var holdItem = false
 signal pickItem
 signal dropItem
+
+var intangible = false
+var intangibleTime = 1.5
 
 enum {
 	IDLE, WALK, JUMP, FALL, PICK
@@ -131,3 +134,12 @@ func animation():
 		await $AnimatedSprite2D.animation_finished
 		can_move = true
 		status = IDLE
+
+func takeDamage():
+	if !intangible:
+		GameControler.hudTakeDamage()
+		intangible = true
+		$AnimatedSprite2D.modulate = Color(1, 0, 0)
+		await get_tree().create_timer(intangibleTime).timeout
+		$AnimatedSprite2D.modulate = Color(1, 1, 1)
+		intangible = false

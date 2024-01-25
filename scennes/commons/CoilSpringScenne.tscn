@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cu2egtu013fty"]
+[gd_scene load_steps=10 format=3 uid="uid://cu2egtu013fty"]
 
 [ext_resource type="Script" path="res://scripts/CoilSpringScript.gd" id="1_p1wfj"]
 [ext_resource type="Texture2D" uid="uid://dnbq8cawixc42" path="res://sprites/commons/mola.png" id="2_pbq7x"]
@@ -56,6 +56,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jsqdc"]
 size = Vector2(10, 4)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hdq3a"]
+size = Vector2(16, 11)
+
 [node name="CoilSpring" type="Area2D"]
 script = ExtResource("1_p1wfj")
 
@@ -67,5 +70,12 @@ autoplay = "idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -6)
 shape = SubResource("RectangleShape2D_jsqdc")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_hdq3a")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

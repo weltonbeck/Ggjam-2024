@@ -253,6 +253,21 @@ shader_parameter/holeCenter = Vector2(80, 60)
 shader_parameter/holeRadius = 45.0
 shader_parameter/penumbra = 5.0
 
+[sub_resource type="Animation" id="Animation_df7qj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/holeRadius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [45.0]
+}
+
 [sub_resource type="Animation" id="Animation_bi6ux"]
 resource_name = "idle"
 length = 2.0
@@ -267,22 +282,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1, 2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [30.0, 50.0, 30.0]
-}
-
-[sub_resource type="Animation" id="Animation_df7qj"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:material:shader_parameter/holeRadius")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [45.0]
+"values": [45.0, 70.0, 45.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dslti"]
@@ -306,8 +306,10 @@ position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_pnsbl")
 
 [node name="CoyoteTimer" type="Timer" parent="."]
+wait_time = 0.05
 
 [node name="JumpBufferingTimer" type="Timer" parent="."]
+wait_time = 0.05
 
 [node name="PickMarker2D" type="Marker2D" parent="."]
 position = Vector2(0, -4)

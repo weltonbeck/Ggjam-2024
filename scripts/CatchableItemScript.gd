@@ -1,10 +1,9 @@
 extends Area2D
 
-var velocity = 150
-
 var playerHover = false
 var collected = false
 var hurled = false
+var followPlayer = false
 @onready var player = get_tree().get_nodes_in_group("Player")[0]
 
 func _ready():
@@ -14,12 +13,22 @@ func _ready():
 
 func _physics_process(delta):
 	if playerHover && collected && player && player.get_node("PickMarker2D"):
-		set_global_position( player.get_node("PickMarker2D").global_position)
+		if !followPlayer:
+			var tween = create_tween().set_loops(1)
+			tween.tween_property(self, "global_position",  player.get_node("PickMarker2D").global_position, 0.3)
+			await get_tree().create_timer(0.3).timeout
+			tween.stop()
+			followPlayer = true
+		elif followPlayer:
+			set_global_position( player.get_node("PickMarker2D").global_position)
 	if hurled:
-		position += transform.x * velocity * delta
+		onHurled(delta)
+
+func onHurled(delta):
+	pass
 
 func pickItem():
-	if player && player.get_node("PickMarker2D"):
+	if player && player.get_node("PickMarker2D") && playerHover && !hurled:
 		collected = true
 		player.holdItem = true
 		
@@ -30,9 +39,11 @@ func dropItem():
 		hurled = true
 
 func _on_body_entered(body):
+	if body.is_in_group("Floor") && hurled:
+		queue_free()
 	if body.is_in_group("Player"):
 		playerHover = true
 
 func _on_body_exited(body):
-	if body.is_in_group("Player") && !collected:
+	if body.is_in_group("Player"):
 		playerHover = false

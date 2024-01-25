@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://ci038wthwjwqj"]
+[gd_scene load_steps=5 format=3 uid="uid://ci038wthwjwqj"]
 
 [ext_resource type="FontFile" uid="uid://di2b06201e75l" path="res://fonts/Kenney Pixel.ttf" id="1_8jyb2"]
 [ext_resource type="Script" path="res://scripts/HudScript.gd" id="1_wbqrc"]
+[ext_resource type="Texture2D" uid="uid://v2a7uj1g5ydm" path="res://sprites/hud/hud-heart-on.png" id="3_bgutf"]
 
 [sub_resource type="Theme" id="Theme_cot8q"]
 default_font = ExtResource("1_8jyb2")
@@ -22,3 +23,21 @@ grow_horizontal = 0
 size_flags_horizontal = 8
 theme = SubResource("Theme_cot8q")
 text = "00000"
+
+[node name="Hearts" type="Node2D" parent="CanvasLayer"]
+
+[node name="Heart1" type="Sprite2D" parent="CanvasLayer/Hearts"]
+position = Vector2(15, 12)
+texture = ExtResource("3_bgutf")
+
+[node name="Heart2" type="Sprite2D" parent="CanvasLayer/Hearts"]
+position = Vector2(39, 12)
+texture = ExtResource("3_bgutf")
+
+[node name="Heart3" type="Sprite2D" parent="CanvasLayer/Hearts"]
+position = Vector2(63, 12)
+texture = ExtResource("3_bgutf")
+
+[node name="Heart4" type="Sprite2D" parent="CanvasLayer/Hearts"]
+position = Vector2(87, 12)
+texture = ExtResource("3_bgutf")
