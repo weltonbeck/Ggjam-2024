@@ -297,12 +297,13 @@ script = ExtResource("1_2py5h")
 pass_through_layers = 4
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_6urq7")
 animation = &"pick"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 2)
+position = Vector2(0, -9)
 shape = SubResource("CapsuleShape2D_pnsbl")
 
 [node name="CoyoteTimer" type="Timer" parent="."]
@@ -312,7 +313,7 @@ wait_time = 0.05
 wait_time = 0.05
 
 [node name="PickMarker2D" type="Marker2D" parent="."]
-position = Vector2(0, -4)
+position = Vector2(0, -13)
 
 [node name="GrayscaleCanvas" type="CanvasLayer" parent="."]
 

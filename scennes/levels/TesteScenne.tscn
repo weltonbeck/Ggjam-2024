@@ -1,6 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://dkq6681syi4cf"]
+[gd_scene load_steps=18 format=3 uid="uid://dkq6681syi4cf"]
 
-[ext_resource type="PackedScene" uid="uid://cfesdyp3bvgey" path="res://scennes/players/PlayerScenne.tscn" id="1_0w30n"]
+[ext_resource type="PackedScene" uid="uid://cfesdyp3bvgey" path="res://scennes/characters/PlayerScenne.tscn" id="1_0w30n"]
 [ext_resource type="PackedScene" uid="uid://necpaxyych8j" path="res://scennes/commons/PauseMenuScenne.tscn" id="1_2rvjb"]
 [ext_resource type="Texture2D" uid="uid://dce08otvocqrh" path="res://sprites/commons/tileset.png" id="1_pl6cy"]
 [ext_resource type="PackedScene" uid="uid://fcsueiwhey7l" path="res://scennes/collectables/CollectableScenne.tscn" id="2_0q76s"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cu2egtu013fty" path="res://scennes/commons/CoilSpringScenne.tscn" id="6_fpfnn"]
 [ext_resource type="PackedScene" uid="uid://do6e375ers0f" path="res://scennes/collectables/CatchablePieScenne.tscn" id="7_hxblr"]
 [ext_resource type="PackedScene" uid="uid://bgx4c3p17e2m7" path="res://scennes/commons/spikeScenne.tscn" id="9_myng6"]
+[ext_resource type="PackedScene" uid="uid://bjpvd11562r86" path="res://scennes/characters/EnemyScenne.tscn" id="10_ar7cd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bvqmu"]
 texture = ExtResource("1_pl6cy")
@@ -175,7 +176,7 @@ autoplay = "platformer"
 position = Vector2(200, 80)
 
 [node name="Player" parent="." instance=ExtResource("1_0w30n")]
-position = Vector2(152, 128)
+position = Vector2(152, 144)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, -56)
@@ -203,3 +204,6 @@ position = Vector2(24, 144)
 
 [node name="Spike2" parent="." instance=ExtResource("9_myng6")]
 position = Vector2(40, 144)
+
+[node name="Enemy" parent="." instance=ExtResource("10_ar7cd")]
+position = Vector2(376, 144)

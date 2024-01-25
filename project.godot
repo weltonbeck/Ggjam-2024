@@ -86,6 +86,8 @@ ui_pick={
 2d_physics/layer_3="PassThroughPlatformer"
 2d_physics/layer_4="Collectable"
 2d_physics/layer_5="Hazard"
+2d_physics/layer_6="Enemy"
+2d_physics/layer_7="Bullet"
 
 [physics]
 

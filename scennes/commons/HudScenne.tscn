@@ -12,6 +12,7 @@ default_font_size = 28
 script = ExtResource("1_wbqrc")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
 anchors_preset = 1
