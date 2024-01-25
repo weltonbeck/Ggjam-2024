@@ -1,20 +1,71 @@
-[gd_scene load_steps=4 format=3 uid="uid://cu2egtu013fty"]
+[gd_scene load_steps=9 format=3 uid="uid://cu2egtu013fty"]
 
-[ext_resource type="Texture2D" uid="uid://bid0ea23ihli1" path="res://sprites/placeholder.png" id="1_fimqe"]
 [ext_resource type="Script" path="res://scripts/CoilSpringScript.gd" id="1_p1wfj"]
+[ext_resource type="Texture2D" uid="uid://dnbq8cawixc42" path="res://sprites/commons/mola.png" id="2_pbq7x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rl2jl"]
+atlas = ExtResource("2_pbq7x")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g8rv6"]
+atlas = ExtResource("2_pbq7x")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jdhu6"]
+atlas = ExtResource("2_pbq7x")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kkn48"]
+atlas = ExtResource("2_pbq7x")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_upff7"]
+animations = [{
+"frames": [{
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_rl2jl")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_g8rv6")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_jdhu6")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_jdhu6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g8rv6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rl2jl")
+}],
+"loop": false,
+"name": &"active",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kkn48")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jsqdc"]
-size = Vector2(16, 4)
+size = Vector2(10, 4)
 
 [node name="CoilSpring" type="Area2D"]
 script = ExtResource("1_p1wfj")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(1, 0.27451, 0.184314, 1)
-scale = Vector2(1, 0.3)
-texture = ExtResource("1_fimqe")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_upff7")
+animation = &"idle"
+autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -6)
 shape = SubResource("RectangleShape2D_jsqdc")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

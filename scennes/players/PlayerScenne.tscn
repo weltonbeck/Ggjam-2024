@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://cfesdyp3bvgey"]
+[gd_scene load_steps=42 format=3 uid="uid://cfesdyp3bvgey"]
 
 [ext_resource type="Script" path="res://scripts/PlayerScript.gd" id="1_2py5h"]
 [ext_resource type="Texture2D" uid="uid://e3ma4be6pw6w" path="res://sprites/characters/palhacito_idle_piscando.png" id="2_x6rmm"]
@@ -83,18 +83,6 @@ region = Rect2(240, 0, 16, 24)
 atlas = ExtResource("2_x6rmm")
 region = Rect2(256, 0, 16, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_uy8e6"]
-atlas = ExtResource("3_x5o3q")
-region = Rect2(0, 0, 16, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7l85b"]
-atlas = ExtResource("3_x5o3q")
-region = Rect2(16, 0, 16, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ncd30"]
-atlas = ExtResource("3_x5o3q")
-region = Rect2(32, 0, 16, 24)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_evap0"]
 atlas = ExtResource("4_d4u0k")
 region = Rect2(0, 0, 16, 24)
@@ -105,6 +93,18 @@ region = Rect2(16, 0, 16, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_27usq"]
 atlas = ExtResource("4_d4u0k")
+region = Rect2(32, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uy8e6"]
+atlas = ExtResource("3_x5o3q")
+region = Rect2(0, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7l85b"]
+atlas = ExtResource("3_x5o3q")
+region = Rect2(16, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ncd30"]
+atlas = ExtResource("3_x5o3q")
 region = Rect2(32, 0, 16, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mcdnp"]
@@ -198,20 +198,6 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_uy8e6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7l85b")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ncd30")
-}],
-"loop": false,
-"name": &"item_pick",
-"speed": 5.0
-}, {
-"frames": [{
 "duration": 0.5,
 "texture": SubResource("AtlasTexture_evap0")
 }, {
@@ -223,6 +209,20 @@ animations = [{
 }],
 "loop": false,
 "name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uy8e6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7l85b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ncd30")
+}],
+"loop": false,
+"name": &"pick",
 "speed": 5.0
 }, {
 "frames": [{
@@ -250,8 +250,46 @@ height = 18.0
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vj7qe"]
 shader = ExtResource("3_bx7h2")
 shader_parameter/holeCenter = Vector2(80, 60)
-shader_parameter/holeRadius = 30.0
+shader_parameter/holeRadius = 45.0
 shader_parameter/penumbra = 5.0
+
+[sub_resource type="Animation" id="Animation_bi6ux"]
+resource_name = "idle"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/holeRadius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [30.0, 50.0, 30.0]
+}
+
+[sub_resource type="Animation" id="Animation_df7qj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/holeRadius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [45.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dslti"]
+_data = {
+"RESET": SubResource("Animation_df7qj"),
+"idle": SubResource("Animation_bi6ux")
+}
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_mask = 30
@@ -260,7 +298,7 @@ pass_through_layers = 4
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_6urq7")
-animation = &"walk"
+animation = &"pick"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -271,6 +309,9 @@ shape = SubResource("CapsuleShape2D_pnsbl")
 
 [node name="JumpBufferingTimer" type="Timer" parent="."]
 
+[node name="PickMarker2D" type="Marker2D" parent="."]
+position = Vector2(0, -4)
+
 [node name="GrayscaleCanvas" type="CanvasLayer" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="GrayscaleCanvas"]
@@ -280,4 +321,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-metadata/_edit_lock_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GrayscaleCanvas"]
+libraries = {
+"": SubResource("AnimationLibrary_dslti")
+}
+autoplay = "idle"
