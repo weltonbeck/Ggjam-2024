@@ -9,7 +9,7 @@ var max_life = 4
 var life = 4
 
 var max_happy = 10
-var happy = 1
+var happy = 0
 @onready var happyTween = get_tree().create_tween().set_loops()
 
 @onready var player = get_tree().get_nodes_in_group("Player")[0]
@@ -20,9 +20,13 @@ func _ready():
 	$CanvasLayer/RichTextLabel.text = str(tickets).pad_zeros(4)
 	GameControler.hudGetTicketSignal.connect(onGetTicket)
 	GameControler.hudTakeDamageSignal.connect(takeDamage)
+	GameControler.hudAddHappySignal.connect(addHappy)
 	renderHearts()
 	
 	updateGrayscaleValues()
+	
+	$CanvasLayer/HappyBar/TextureProgressBar.max_value = max_happy
+	$CanvasLayer/HappyBar/TextureProgressBar.value = happy
 
 func renderHearts() :
 	for i in range($CanvasLayer/Hearts.get_child_count()):
@@ -46,10 +50,25 @@ func takeDamage():
 
 func _process(delta):
 	$GrayscaleCanvas/ColorRect.material.set("shader_parameter/holeCenter", player.get_global_transform_with_canvas().origin)
+
+func addLife():
+	if life < max_life:
+		life += 1
+	renderHearts()
+
+func addHappy():
+	if happy == max_happy:
+		happy = 0
+		addLife()
+	happy += 1
+	$CanvasLayer/HappyBar/TextureProgressBar.value = happy
+			
+	updateGrayscaleValues()
 	
 func updateGrayscaleValues():
-	var max_value = (300 * happy) / max_happy
-	var min_value = (250 * happy) / max_happy
+	var max_value = (300 * (happy + 1)) / max_happy
+	var min_value = (250 * (happy + 1)) / max_happy
+	happyTween.stop()
 	happyTween.set_loops()
 	happyTween.tween_property($GrayscaleCanvas/ColorRect.material, "shader_parameter/holeRadius", max_value, 1)
 	happyTween.tween_property($GrayscaleCanvas/ColorRect.material, "shader_parameter/holeRadius", min_value, 1)
