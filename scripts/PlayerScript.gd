@@ -47,9 +47,6 @@ func _physics_process(delta):
 	
 	animation()
 	
-	#faz o shader cinza seguir
-	$GrayscaleCanvas/ColorRect.material.set("shader_parameter/holeCenter", get_global_transform_with_canvas().origin)	
-	
 func walk():
 		var direction = Input.get_axis("ui_left", "ui_right")
 		#flip
@@ -123,19 +120,34 @@ func pick():
 
 func animation():
 	if status == IDLE:
-		$AnimatedSprite2D.play("idle")
+		if holdItem:
+			$AnimatedSprite2D.play("hold_idle")
+		else:
+			$AnimatedSprite2D.play("idle")
 	elif status == WALK:
-		$AnimatedSprite2D.play("walk")
+		if holdItem:
+			$AnimatedSprite2D.play("hold_walk")
+		else:
+			$AnimatedSprite2D.play("walk")
 	elif status == JUMP && $AnimatedSprite2D.animation != "jump":
-		$AnimatedSprite2D.play("jump")
+		if holdItem:
+			$AnimatedSprite2D.play("hold_jump")
+		else:
+			$AnimatedSprite2D.play("jump")
 	elif status == FALL && is_on_floor():
-		$AnimatedSprite2D.play("grounded")
+		if holdItem:
+			$AnimatedSprite2D.play("hold_grounded")
+		else:
+			$AnimatedSprite2D.play("grounded")
 		await $AnimatedSprite2D.animation_finished
 		status = IDLE
 	elif status == FALL:
-		if $AnimatedSprite2D.animation == "jump":
+		if $AnimatedSprite2D.animation == "jump" || $AnimatedSprite2D.animation == "hold_jump":
 			await $AnimatedSprite2D.animation_finished
-		$AnimatedSprite2D.play("fall")
+		if holdItem:
+			$AnimatedSprite2D.play("hold_fall")
+		else:
+			$AnimatedSprite2D.play("fall")
 	elif status == PICK:
 		$AnimatedSprite2D.play("pick")
 		await $AnimatedSprite2D.animation_finished
@@ -151,5 +163,12 @@ func takeDamage():
 		tween.tween_property($AnimatedSprite2D, "modulate", Color(1,1, 1), 0.3)
 		await get_tree().create_timer(intangibleTime).timeout
 		tween.stop()
+		$CollisionShape2D.disabled = true
+		$CollisionShape2D.disabled = false
 		$AnimatedSprite2D.modulate = Color(1, 1, 1)
 		intangible = false
+
+func die():
+	status = IDLE
+	velocity.x = 0
+	can_move = false

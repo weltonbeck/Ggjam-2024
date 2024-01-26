@@ -13,7 +13,7 @@ func _ready():
 		player.dropItem.connect(dropItem)
 
 func _physics_process(delta):
-	if playerHover && collected && player && player.get_node("PickMarker2D"):
+	if collected && player && player.get_node("PickMarker2D"):
 		if !followPlayer:
 			var tween = create_tween().set_loops(1)
 			tween.tween_property(self, "global_position",  player.get_node("PickMarker2D").global_position, 0.3)
@@ -44,13 +44,14 @@ func dropItem():
 		hurled = true
 
 func _on_body_entered(body):
+	print(body)
 	if body.is_in_group("Floor") && hurled:
 		queue_free()
-	if body.is_in_group("Enemy") && hurled:
+	if body.is_in_group("Enemy"):
 		queue_free()
 	if body.is_in_group("Player"):
 		playerHover = true
 
 func _on_body_exited(body):
-	if body.is_in_group("Player"):
+	if body.is_in_group("Player")  && !collected:
 		playerHover = false

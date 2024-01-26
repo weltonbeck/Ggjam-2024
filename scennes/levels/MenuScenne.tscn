@@ -1,16 +1,37 @@
-[gd_scene load_steps=4 format=3 uid="uid://dxe7bdit0ai40"]
+[gd_scene load_steps=12 format=3 uid="uid://dxe7bdit0ai40"]
 
 [ext_resource type="Script" path="res://scripts/MenuScript.gd" id="1_jx2ti"]
 [ext_resource type="FontFile" uid="uid://di2b06201e75l" path="res://fonts/Kenney Pixel.ttf" id="2_0c21t"]
+[ext_resource type="Texture2D" uid="uid://dxspwcbnsn6us" path="res://sprites/hud/spr_title.png" id="2_6048f"]
+[ext_resource type="Texture2D" uid="uid://dh0ggkmuqi01f" path="res://sprites/hud/spr_botao.png" id="3_th034"]
+[ext_resource type="Texture2D" uid="uid://cqc0v8vfkmpo1" path="res://sprites/hud/spr_botao_hover.png" id="4_40418"]
+[ext_resource type="Texture2D" uid="uid://bko7dti7207hk" path="res://sprites/hud/spr_botao_click.png" id="5_tqe3o"]
 
-[sub_resource type="Theme" id="Theme_23wp1"]
-default_font = ExtResource("2_0c21t")
-default_font_size = 32
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yrflv"]
+texture = ExtResource("3_th034")
+texture_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c61xw"]
+texture = ExtResource("4_40418")
+texture_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_re7jv"]
+texture = ExtResource("5_tqe3o")
+texture_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m7uas"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1lgv0"]
 
 [node name="MenuScenne" type="Node2D"]
 script = ExtResource("1_jx2ti")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(160, 94)
+scale = Vector2(0.684259, 0.684259)
+texture = ExtResource("2_6048f")
 
 [node name="StartGameButton" type="Button" parent="CanvasLayer"]
 anchors_preset = 8
@@ -18,14 +39,23 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -60.0
-offset_top = -36.0
-offset_right = 60.0
-offset_bottom = -6.0
+offset_left = -56.0
+offset_top = -10.0
+offset_right = 56.0
+offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_default_cursor_shape = 2
-theme = SubResource("Theme_23wp1")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_0c21t")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxTexture_yrflv")
+theme_override_styles/hover = SubResource("StyleBoxTexture_c61xw")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_re7jv")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_m7uas")
 text = "Start Game"
 
 [node name="QuitGameButton" type="Button" parent="CanvasLayer"]
@@ -34,15 +64,24 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -60.0
-offset_top = 1.0
-offset_right = 60.0
-offset_bottom = 31.0
+offset_left = -56.0
+offset_top = 38.0
+offset_right = 56.0
+offset_bottom = 78.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_default_cursor_shape = 2
-theme = SubResource("Theme_23wp1")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_0c21t")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxTexture_yrflv")
+theme_override_styles/hover = SubResource("StyleBoxTexture_c61xw")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_re7jv")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1lgv0")
 text = "Quit Game"
 
-[connection signal="button_down" from="CanvasLayer/StartGameButton" to="." method="_on_start_game"]
-[connection signal="button_down" from="CanvasLayer/QuitGameButton" to="." method="_on_quit_game"]
+[connection signal="pressed" from="CanvasLayer/StartGameButton" to="." method="_on_start_game"]
+[connection signal="pressed" from="CanvasLayer/QuitGameButton" to="." method="_on_quit_game"]

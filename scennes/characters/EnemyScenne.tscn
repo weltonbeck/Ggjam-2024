@@ -251,7 +251,7 @@ height = 17.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jpl4t"]
 size = Vector2(12, 16)
 
-[node name="Enemy" type="CharacterBody2D"]
+[node name="Enemy" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 32
 collision_mask = 3
 script = ExtResource("1_kcm6q")

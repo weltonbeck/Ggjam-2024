@@ -1,14 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://ci038wthwjwqj"]
+[gd_scene load_steps=7 format=3 uid="uid://ci038wthwjwqj"]
 
 [ext_resource type="FontFile" uid="uid://di2b06201e75l" path="res://fonts/Kenney Pixel.ttf" id="1_8jyb2"]
 [ext_resource type="Script" path="res://scripts/HudScript.gd" id="1_wbqrc"]
 [ext_resource type="Texture2D" uid="uid://v2a7uj1g5ydm" path="res://sprites/hud/hud-heart-on.png" id="3_bgutf"]
+[ext_resource type="Shader" path="res://shaders/GrayscaleShader.gdshader" id="4_i7csh"]
 
 [sub_resource type="Theme" id="Theme_cot8q"]
 default_font = ExtResource("1_8jyb2")
 default_font_size = 28
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uwwnc"]
+shader = ExtResource("4_i7csh")
+shader_parameter/holeCenter = Vector2(80, 60)
+shader_parameter/holeRadius = 0.0
+shader_parameter/penumbra = 5.0
+
 [node name="HudScenne" type="Node2D"]
+visible = false
 script = ExtResource("1_wbqrc")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -42,3 +50,13 @@ texture = ExtResource("3_bgutf")
 [node name="Heart4" type="Sprite2D" parent="CanvasLayer/Hearts"]
 position = Vector2(87, 12)
 texture = ExtResource("3_bgutf")
+
+[node name="GrayscaleCanvas" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="GrayscaleCanvas"]
+material = SubResource("ShaderMaterial_uwwnc")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
