@@ -1,13 +1,13 @@
 [gd_scene load_steps=7 format=3 uid="uid://ci038wthwjwqj"]
 
-[ext_resource type="FontFile" uid="uid://di2b06201e75l" path="res://fonts/Kenney Pixel.ttf" id="1_8jyb2"]
 [ext_resource type="Script" path="res://scripts/HudScript.gd" id="1_wbqrc"]
+[ext_resource type="FontFile" uid="uid://bvlb5x6n1pny6" path="res://fonts/DigitalDisco.ttf" id="2_tdhah"]
 [ext_resource type="Texture2D" uid="uid://v2a7uj1g5ydm" path="res://sprites/hud/hud-heart-on.png" id="3_bgutf"]
 [ext_resource type="Shader" path="res://shaders/GrayscaleShader.gdshader" id="4_i7csh"]
 
-[sub_resource type="Theme" id="Theme_cot8q"]
-default_font = ExtResource("1_8jyb2")
-default_font_size = 28
+[sub_resource type="Theme" id="Theme_iamds"]
+default_font = ExtResource("2_tdhah")
+default_font_size = 20
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uwwnc"]
 shader = ExtResource("4_i7csh")
@@ -16,7 +16,6 @@ shader_parameter/holeRadius = 0.0
 shader_parameter/penumbra = 5.0
 
 [node name="HudScenne" type="Node2D"]
-visible = false
 script = ExtResource("1_wbqrc")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -27,10 +26,11 @@ anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -64.0
-offset_bottom = 24.0
+offset_top = 4.0
+offset_bottom = 28.0
 grow_horizontal = 0
 size_flags_horizontal = 8
-theme = SubResource("Theme_cot8q")
+theme = SubResource("Theme_iamds")
 text = "00000"
 
 [node name="Hearts" type="Node2D" parent="CanvasLayer"]
@@ -60,3 +60,4 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_lock_ = true

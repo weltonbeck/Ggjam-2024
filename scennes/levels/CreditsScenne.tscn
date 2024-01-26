@@ -1,0 +1,83 @@
+[gd_scene load_steps=12 format=3 uid="uid://mmjbx2eiir08"]
+
+[ext_resource type="Script" path="res://scripts/MenuScript.gd" id="1_e0wlh"]
+[ext_resource type="Texture2D" uid="uid://dxspwcbnsn6us" path="res://sprites/hud/spr_title.png" id="2_2f6q3"]
+[ext_resource type="FontFile" uid="uid://bvlb5x6n1pny6" path="res://fonts/DigitalDisco.ttf" id="3_ufjq7"]
+[ext_resource type="Texture2D" uid="uid://dh0ggkmuqi01f" path="res://sprites/hud/spr_botao.png" id="4_ic2h5"]
+[ext_resource type="Texture2D" uid="uid://cqc0v8vfkmpo1" path="res://sprites/hud/spr_botao_hover.png" id="5_78mka"]
+[ext_resource type="Texture2D" uid="uid://bko7dti7207hk" path="res://sprites/hud/spr_botao_click.png" id="6_q6tkv"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yrflv"]
+texture = ExtResource("4_ic2h5")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c61xw"]
+texture = ExtResource("5_78mka")
+texture_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_re7jv"]
+texture = ExtResource("6_q6tkv")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1lgv0"]
+
+[sub_resource type="Theme" id="Theme_0457x"]
+default_font = ExtResource("3_ufjq7")
+default_font_size = 14
+
+[node name="MenuScenne" type="Node2D"]
+script = ExtResource("1_e0wlh")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(160, 94)
+scale = Vector2(0.684259, 0.684259)
+texture = ExtResource("2_2f6q3")
+
+[node name="BackButton" type="Button" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -56.0
+offset_top = 38.0
+offset_right = 56.0
+offset_bottom = 78.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_ufjq7")
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxTexture_yrflv")
+theme_override_styles/hover = SubResource("StyleBoxTexture_c61xw")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_re7jv")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1lgv0")
+text = "Back"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -104.0
+offset_top = -66.0
+offset_right = 120.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_0457x")
+theme_override_colors/default_color = Color(0.933333, 0.25098, 0.286275, 1)
+theme_override_constants/outline_size = 10
+text = " Welton Beck
+ - tomwb1@gmail.com
+ Efraim Marcatto
+ - efraimmarcatto@gmail.com
+ Beowulf
+ - beowulfus.universum@gmail.com"
+
+[connection signal="pressed" from="CanvasLayer/BackButton" to="." method="_on_back_menu"]

@@ -1,22 +1,20 @@
 [gd_scene load_steps=12 format=3 uid="uid://necpaxyych8j"]
 
 [ext_resource type="Script" path="res://scripts/PauseMenuScript.gd" id="1_pqro2"]
-[ext_resource type="FontFile" uid="uid://di2b06201e75l" path="res://fonts/Kenney Pixel.ttf" id="2_yleuy"]
+[ext_resource type="FontFile" uid="uid://bvlb5x6n1pny6" path="res://fonts/DigitalDisco.ttf" id="2_53kv8"]
 [ext_resource type="Texture2D" uid="uid://dh0ggkmuqi01f" path="res://sprites/hud/spr_botao.png" id="3_yk04a"]
 [ext_resource type="Texture2D" uid="uid://cqc0v8vfkmpo1" path="res://sprites/hud/spr_botao_hover.png" id="4_47qie"]
 [ext_resource type="Texture2D" uid="uid://bko7dti7207hk" path="res://sprites/hud/spr_botao_click.png" id="5_8sp4a"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rkj53"]
 texture = ExtResource("3_yk04a")
-texture_margin_bottom = 5.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g0lim"]
 texture = ExtResource("4_47qie")
-texture_margin_bottom = 10.0
+texture_margin_bottom = 5.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n1k35"]
 texture = ExtResource("5_8sp4a")
-texture_margin_bottom = 5.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uhgir"]
 
@@ -51,8 +49,8 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_yleuy")
-theme_override_font_sizes/font_size = 20
+theme_override_fonts/font = ExtResource("2_53kv8")
+theme_override_font_sizes/font_size = 14
 theme_override_styles/normal = SubResource("StyleBoxTexture_rkj53")
 theme_override_styles/hover = SubResource("StyleBoxTexture_g0lim")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_n1k35")
@@ -78,8 +76,8 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_yleuy")
-theme_override_font_sizes/font_size = 20
+theme_override_fonts/font = ExtResource("2_53kv8")
+theme_override_font_sizes/font_size = 14
 theme_override_styles/normal = SubResource("StyleBoxTexture_rkj53")
 theme_override_styles/hover = SubResource("StyleBoxTexture_g0lim")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_n1k35")
