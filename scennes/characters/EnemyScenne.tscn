@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://bjpvd11562r86"]
+[gd_scene load_steps=41 format=3 uid="uid://bjpvd11562r86"]
 
 [ext_resource type="Texture2D" uid="uid://mjvrgmy45c3o" path="res://sprites/enemy/inimigo_hurt.png" id="1_ds5up"]
 [ext_resource type="Script" path="res://scripts/EnemyScript.gd" id="1_kcm6q"]
@@ -251,6 +251,9 @@ height = 17.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jpl4t"]
 size = Vector2(12, 16)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_75c85"]
+radius = 64.0
+
 [node name="Enemy" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 32
 collision_mask = 3
@@ -266,6 +269,11 @@ autoplay = "idle"
 position = Vector2(-1, -8.5)
 shape = SubResource("CapsuleShape2D_jmy8x")
 
+[node name="RayCast" type="RayCast2D" parent="."]
+position = Vector2(6, -8)
+target_position = Vector2(0, 9)
+collision_mask = 2
+
 [node name="HitBox" type="Area2D" parent="."]
 collision_layer = 32
 collision_mask = 65
@@ -275,14 +283,13 @@ monitorable = false
 position = Vector2(-1, -8)
 shape = SubResource("RectangleShape2D_jpl4t")
 
-[node name="RayCast" type="RayCast2D" parent="."]
-position = Vector2(6, -8)
-target_position = Vector2(0, 9)
-collision_mask = 2
-
-[node name="Looking" type="RayCast2D" parent="."]
+[node name="Looking" type="Area2D" parent="."]
 position = Vector2(0, -8)
-target_position = Vector2(80, 0)
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Looking"]
+shape = SubResource("CircleShape2D_75c85")
 
 [connection signal="area_entered" from="HitBox" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="HitBox" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Looking" to="." method="_on_looking_body_entered"]
