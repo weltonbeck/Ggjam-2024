@@ -60,6 +60,7 @@ func set_walking(value):
 
 
 func die():
+	velocity.x = 0
 	dead = true
 	animated_sprite_2d.play("clowning")
 	await animated_sprite_2d.animation_finished

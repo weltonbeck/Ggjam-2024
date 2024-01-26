@@ -29,7 +29,7 @@ func _physics_process(delta):
 	if hurled:
 		onHurled(delta)
 
-func onHurled(delta):
+func onHurled(_delta):
 	pass
 
 func pickItem():

@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://nhreydpr55f8"]
+
+[ext_resource type="Texture2D" uid="uid://ddd3fy8fypcje" path="res://sprites/commons/plataforma_baloes1.png" id="1_0apoi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wh5q4"]
+size = Vector2(48, 5)
+
+[node name="Platformer" type="AnimatableBody2D"]
+position = Vector2(64, 120)
+collision_layer = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -4)
+texture = ExtResource("1_0apoi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 8.5)
+shape = SubResource("RectangleShape2D_wh5q4")
+one_way_collision = true
