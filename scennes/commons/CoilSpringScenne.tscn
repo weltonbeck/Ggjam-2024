@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://cu2egtu013fty"]
+[gd_scene load_steps=11 format=3 uid="uid://cu2egtu013fty"]
 
 [ext_resource type="Script" path="res://scripts/CoilSpringScript.gd" id="1_p1wfj"]
 [ext_resource type="Texture2D" uid="uid://dnbq8cawixc42" path="res://sprites/commons/mola.png" id="2_pbq7x"]
+[ext_resource type="AudioStream" uid="uid://2lyaepu6s1mb" path="res://sounds/super_jump.wav" id="3_po1gi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rl2jl"]
 atlas = ExtResource("2_pbq7x")
@@ -77,5 +78,8 @@ collision_layer = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_hdq3a")
+
+[node name="Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_po1gi")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

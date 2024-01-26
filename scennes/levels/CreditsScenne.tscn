@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://mmjbx2eiir08"]
+[gd_scene load_steps=13 format=3 uid="uid://cvegs25jmqvk5"]
 
 [ext_resource type="Script" path="res://scripts/MenuScript.gd" id="1_e0wlh"]
 [ext_resource type="Texture2D" uid="uid://dxspwcbnsn6us" path="res://sprites/hud/spr_title.png" id="2_2f6q3"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dh0ggkmuqi01f" path="res://sprites/hud/spr_botao.png" id="4_ic2h5"]
 [ext_resource type="Texture2D" uid="uid://cqc0v8vfkmpo1" path="res://sprites/hud/spr_botao_hover.png" id="5_78mka"]
 [ext_resource type="Texture2D" uid="uid://bko7dti7207hk" path="res://sprites/hud/spr_botao_click.png" id="6_q6tkv"]
+[ext_resource type="AudioStream" uid="uid://b7rfn0tdel1qv" path="res://sounds/click.wav" id="7_xofxa"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yrflv"]
 texture = ExtResource("4_ic2h5")
@@ -79,5 +80,9 @@ text = " Welton Beck
  - efraimmarcatto@gmail.com
  Beowulf
  - beowulfus.universum@gmail.com"
+
+[node name="ClickSound" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("7_xofxa")
 
 [connection signal="pressed" from="CanvasLayer/BackButton" to="." method="_on_back_menu"]

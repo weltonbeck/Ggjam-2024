@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://do47r03cieii2"]
+[gd_scene load_steps=14 format=3 uid="uid://8pfkass2yln2"]
 
 [ext_resource type="Script" path="res://scripts/CatchableDentureScript.gd" id="1_kg1fe"]
 [ext_resource type="Texture2D" uid="uid://bvf0xngjpl55j" path="res://sprites/collectables/dentadurinha.png" id="2_tnnm6"]
+[ext_resource type="AudioStream" uid="uid://b7qpumb00pqp4" path="res://sounds/throwing.wav" id="3_x4flg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8a81c"]
 atlas = ExtResource("2_tnnm6")
@@ -91,6 +92,9 @@ position = Vector2(0, -4.5)
 shape = SubResource("RectangleShape2D_exbih")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="ThrowingSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_x4flg")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

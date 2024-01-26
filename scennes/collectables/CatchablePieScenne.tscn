@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://do6e375ers0f"]
+[gd_scene load_steps=5 format=3 uid="uid://do6e375ers0f"]
 
 [ext_resource type="Script" path="res://scripts/CatchablePieScript.gd" id="1_i11cs"]
 [ext_resource type="Texture2D" uid="uid://bd6iswajvavbg" path="res://sprites/collectables/torta.png" id="2_gy8v8"]
+[ext_resource type="AudioStream" uid="uid://b7qpumb00pqp4" path="res://sounds/throwing.wav" id="3_bad6e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u7hoy"]
 size = Vector2(11, 9)
@@ -20,6 +21,9 @@ position = Vector2(-0.5, -3.5)
 shape = SubResource("RectangleShape2D_u7hoy")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="ThrowingSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_bad6e")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

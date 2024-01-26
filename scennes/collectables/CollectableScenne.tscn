@@ -1,7 +1,8 @@
-[gd_scene load_steps=36 format=3 uid="uid://fcsueiwhey7l"]
+[gd_scene load_steps=37 format=3 uid="uid://fcsueiwhey7l"]
 
 [ext_resource type="Script" path="res://scripts/CollectableScript.gd" id="1_5tk02"]
 [ext_resource type="Texture2D" uid="uid://cy4r8k7xfeiqj" path="res://sprites/collectables/coin_ticket_animation.png" id="2_7muv1"]
+[ext_resource type="AudioStream" uid="uid://cgyu1rdfi06cf" path="res://sounds/collected.wav" id="3_3x76n"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4pkfi"]
 atlas = ExtResource("2_7muv1")
@@ -242,5 +243,8 @@ frame_progress = 0.706927
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_rcdlw")
+
+[node name="AudioCollected" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_3x76n")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

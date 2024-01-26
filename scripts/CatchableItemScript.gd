@@ -42,9 +42,9 @@ func dropItem():
 		collected = false
 		playerHover = false
 		hurled = true
+		$ThrowingSound.play()
 
 func _on_body_entered(body):
-	print(body)
 	if body.is_in_group("Floor") && hurled:
 		queue_free()
 	if body.is_in_group("Enemy"):

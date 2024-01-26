@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dxe7bdit0ai40"]
+[gd_scene load_steps=14 format=3 uid="uid://dxe7bdit0ai40"]
 
 [ext_resource type="Script" path="res://scripts/MenuScript.gd" id="1_jx2ti"]
 [ext_resource type="Texture2D" uid="uid://dxspwcbnsn6us" path="res://sprites/hud/spr_title.png" id="2_6048f"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://dh0ggkmuqi01f" path="res://sprites/hud/spr_botao.png" id="3_th034"]
 [ext_resource type="Texture2D" uid="uid://cqc0v8vfkmpo1" path="res://sprites/hud/spr_botao_hover.png" id="4_40418"]
 [ext_resource type="Texture2D" uid="uid://bko7dti7207hk" path="res://sprites/hud/spr_botao_click.png" id="5_tqe3o"]
+[ext_resource type="AudioStream" uid="uid://b7rfn0tdel1qv" path="res://sounds/click.wav" id="7_6frkx"]
+[ext_resource type="AudioStream" uid="uid://b5agk15jno07a" path="res://sounds/start_screen.mp3" id="8_o3byc"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yrflv"]
 texture = ExtResource("3_th034")
@@ -105,6 +107,13 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_c61xw")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_re7jv")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_1lgv0")
 text = "Quit Game"
+
+[node name="ClickSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_6frkx")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_o3byc")
+autoplay = true
 
 [connection signal="pressed" from="CanvasLayer/StartGameButton" to="." method="_on_start_game"]
 [connection signal="pressed" from="CanvasLayer/CreditsButton" to="." method="_on_go_to_credits"]

@@ -7,6 +7,9 @@ var jump_strength
 @export var speed = 100.0
 @export var jump_height = 16 * 3
 @export var max_time_to_peak = 0.3
+@onready var jump_sound = $JumpSound
+@onready var damage_sound = $DamageSound
+@onready var catch_sound = $CatchSound
 
 var can_move = true
 var can_jump = false
@@ -22,7 +25,7 @@ signal pickItem
 signal dropItem
 
 var intangible = false
-var intangibleTime = 1.5
+var intangibleTime = 1
 
 enum {
 	IDLE, WALK, JUMP, FALL, PICK
@@ -76,6 +79,7 @@ func jump():
 		
 	#jump
 	if Input.is_action_just_pressed("ui_jump"):
+		jump_sound.play()
 		wait_jump = true
 		$JumpBufferingTimer.start(jump_buffering_time)
 	if $JumpBufferingTimer.is_stopped():
@@ -107,6 +111,7 @@ func pass_through():
 
 func pick():
 	if Input.is_action_just_pressed("ui_pick") && is_on_floor():
+		catch_sound.play()
 		can_move = false
 		velocity.x = 0
 		status = PICK
@@ -155,6 +160,8 @@ func animation():
 		status = IDLE
 
 func takeDamage():
+	if can_move:
+		damage_sound.play()
 	if !intangible:
 		GameControler.hudTakeDamage()
 		intangible = true
