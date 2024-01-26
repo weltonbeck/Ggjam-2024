@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dkq6681syi4cf"]
+[gd_scene load_steps=19 format=3 uid="uid://dkq6681syi4cf"]
 
 [ext_resource type="PackedScene" uid="uid://cfesdyp3bvgey" path="res://scennes/characters/PlayerScenne.tscn" id="1_0w30n"]
 [ext_resource type="PackedScene" uid="uid://necpaxyych8j" path="res://scennes/commons/PauseMenuScenne.tscn" id="1_2rvjb"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://do6e375ers0f" path="res://scennes/collectables/CatchablePieScenne.tscn" id="7_hxblr"]
 [ext_resource type="PackedScene" uid="uid://bgx4c3p17e2m7" path="res://scennes/commons/spikeScenne.tscn" id="9_myng6"]
 [ext_resource type="PackedScene" uid="uid://bjpvd11562r86" path="res://scennes/characters/EnemyScenne.tscn" id="10_ar7cd"]
+[ext_resource type="PackedScene" uid="uid://do47r03cieii2" path="res://scennes/collectables/CatchableDentureScenne.tscn" id="11_witby"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bvqmu"]
 texture = ExtResource("1_pl6cy")
@@ -207,3 +208,6 @@ position = Vector2(40, 144)
 
 [node name="Enemy" parent="." instance=ExtResource("10_ar7cd")]
 position = Vector2(376, 144)
+
+[node name="CatchableDenture" parent="." instance=ExtResource("11_witby")]
+position = Vector2(336, 160)
