@@ -30,7 +30,7 @@ script = ExtResource("1_e0wlh")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
-position = Vector2(160, 94)
+position = Vector2(160, 91)
 scale = Vector2(0.684259, 0.684259)
 texture = ExtResource("2_2f6q3")
 
