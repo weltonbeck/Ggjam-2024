@@ -54,12 +54,13 @@ func set_walking(value):
 func die():
 	velocity.x = 0
 	dead = true
+	GameControler.hudAddHappy()
 	animated_sprite_2d.play("clowning")
 	await animated_sprite_2d.animation_finished
 	animated_sprite_2d.play("clown_idle")
 
 
-func _on_looking_body_entered(body):
+func _on_looking_body_entered(_body):
 	if !walking and !dead:
 		animated_sprite_2d.play("scared")
 		await animated_sprite_2d.animation_finished

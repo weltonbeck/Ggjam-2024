@@ -1,9 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://ci038wthwjwqj"]
+[gd_scene load_steps=11 format=3 uid="uid://ci038wthwjwqj"]
 
 [ext_resource type="Script" path="res://scripts/HudScript.gd" id="1_wbqrc"]
 [ext_resource type="FontFile" uid="uid://bvlb5x6n1pny6" path="res://fonts/DigitalDisco.ttf" id="2_tdhah"]
 [ext_resource type="Texture2D" uid="uid://v2a7uj1g5ydm" path="res://sprites/hud/hud-heart-on.png" id="3_bgutf"]
 [ext_resource type="Shader" path="res://shaders/GrayscaleShader.gdshader" id="4_i7csh"]
+[ext_resource type="Texture2D" uid="uid://btwa2gnmme7m4" path="res://sprites/hud/happy_bar_under.png" id="4_vo13i"]
+[ext_resource type="Texture2D" uid="uid://bo41sb62m1ru0" path="res://sprites/hud/happy_bar_over.png" id="5_4ti40"]
+[ext_resource type="Texture2D" uid="uid://j6t4kwa64tdr" path="res://sprites/hud/happy_bar_progress.png" id="6_agsoj"]
+[ext_resource type="Texture2D" uid="uid://pa0lhj4ldniv" path="res://sprites/hud/happy_bar_icon.png" id="7_t5a32"]
 
 [sub_resource type="Theme" id="Theme_iamds"]
 default_font = ExtResource("2_tdhah")
@@ -50,6 +54,22 @@ texture = ExtResource("3_bgutf")
 [node name="Heart4" type="Sprite2D" parent="CanvasLayer/Hearts"]
 position = Vector2(87, 12)
 texture = ExtResource("3_bgutf")
+
+[node name="HappyBar" type="Node2D" parent="CanvasLayer"]
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/HappyBar"]
+offset_left = 144.0
+offset_top = 4.0
+offset_right = 208.0
+offset_bottom = 24.0
+value = 100.0
+texture_under = ExtResource("4_vo13i")
+texture_over = ExtResource("5_4ti40")
+texture_progress = ExtResource("6_agsoj")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/HappyBar"]
+position = Vector2(136, 12)
+texture = ExtResource("7_t5a32")
 
 [node name="GrayscaleCanvas" type="CanvasLayer" parent="."]
 
