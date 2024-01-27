@@ -47,7 +47,7 @@ func dropItem():
 func _on_body_entered(body):
 	if body.is_in_group("Floor") && hurled:
 		queue_free()
-	if body.is_in_group("Enemy"):
+	if body.is_in_group("Enemy") && !body.dead:
 		queue_free()
 	if body.is_in_group("Player"):
 		playerHover = true

@@ -8,7 +8,7 @@ var heart_off = preload("res://sprites/hud/hud-heart-off.png")
 var max_life = 4
 var life = 4
 
-var max_happy = 10
+var max_happy = 5
 var happy = 0
 @onready var happyTween
 
@@ -50,7 +50,7 @@ func takeDamage():
 func gameOver():
 	if player:
 		player.die()
-		await get_tree().create_timer(0.3).timeout
+		await get_tree().create_timer(0.2).timeout
 		GameControler.changeScenne("res://scennes/levels/CreditsScenne.tscn")
 
 func _process(_delta):

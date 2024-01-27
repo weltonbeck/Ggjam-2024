@@ -32,23 +32,27 @@ enum {
 }
 
 var status = IDLE
+var isDie = false
+
 
 func _ready():
 	jump_strength = -((jump_height * 2) / max_time_to_peak)
 	gravity = (jump_height * 2) / pow(max_time_to_peak, 2)
 
 func _physics_process(delta):
-	velocity.y += gravity * delta
-	if can_move:
-		walk()
-		jump()
+	if !isDie:
+		velocity.y += gravity * delta
+		if can_move:
+			walk()
+			jump()
 	
-	pass_through()
-	pick()
+		pass_through()
+		pick()
 	
-	move_and_slide()
+		move_and_slide()
 	
 	animation()
+	fallDie()
 	
 func walk():
 		var direction = Input.get_axis("ui_left", "ui_right")
@@ -179,3 +183,8 @@ func die():
 	status = IDLE
 	velocity.x = 0
 	can_move = false
+	
+func fallDie():
+	if position.y > 160 && !isDie:
+		isDie = true
+		GameControler.hudDie()

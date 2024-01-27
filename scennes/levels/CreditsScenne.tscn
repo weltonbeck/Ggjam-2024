@@ -1,12 +1,15 @@
-[gd_scene load_steps=13 format=3 uid="uid://cvegs25jmqvk5"]
+[gd_scene load_steps=16 format=3 uid="uid://cvegs25jmqvk5"]
 
 [ext_resource type="Script" path="res://scripts/MenuScript.gd" id="1_e0wlh"]
 [ext_resource type="Texture2D" uid="uid://dxspwcbnsn6us" path="res://sprites/hud/spr_title.png" id="2_2f6q3"]
+[ext_resource type="Texture2D" uid="uid://cptnnk5p0o44h" path="res://sprites/hud/textbox.png" id="3_2ky7l"]
 [ext_resource type="FontFile" uid="uid://bvlb5x6n1pny6" path="res://fonts/DigitalDisco.ttf" id="3_ufjq7"]
 [ext_resource type="Texture2D" uid="uid://dh0ggkmuqi01f" path="res://sprites/hud/spr_botao.png" id="4_ic2h5"]
 [ext_resource type="Texture2D" uid="uid://cqc0v8vfkmpo1" path="res://sprites/hud/spr_botao_hover.png" id="5_78mka"]
 [ext_resource type="Texture2D" uid="uid://bko7dti7207hk" path="res://sprites/hud/spr_botao_click.png" id="6_q6tkv"]
 [ext_resource type="AudioStream" uid="uid://b7rfn0tdel1qv" path="res://sounds/click.wav" id="7_xofxa"]
+[ext_resource type="FontFile" uid="uid://di2b06201e75l" path="res://fonts/Kenney Pixel.ttf" id="8_ddlnn"]
+[ext_resource type="AudioStream" uid="uid://b5agk15jno07a" path="res://sounds/start_screen.mp3" id="10_m48wl"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yrflv"]
 texture = ExtResource("4_ic2h5")
@@ -21,8 +24,8 @@ texture = ExtResource("6_q6tkv")
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1lgv0"]
 
 [sub_resource type="Theme" id="Theme_0457x"]
-default_font = ExtResource("3_ufjq7")
-default_font_size = 14
+default_font = ExtResource("8_ddlnn")
+default_font_size = 16
 
 [node name="MenuScenne" type="Node2D"]
 script = ExtResource("1_e0wlh")
@@ -34,6 +37,12 @@ position = Vector2(160, 91)
 scale = Vector2(0.684259, 0.684259)
 texture = ExtResource("2_2f6q3")
 
+[node name="Sprite2D2" type="Sprite2D" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0.819608)
+position = Vector2(160, 72)
+scale = Vector2(0.950495, 2)
+texture = ExtResource("3_2ky7l")
+
 [node name="BackButton" type="Button" parent="CanvasLayer"]
 anchors_preset = 8
 anchor_left = 0.5
@@ -41,9 +50,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -56.0
-offset_top = 38.0
+offset_top = 46.0
 offset_right = 56.0
-offset_bottom = 78.0
+offset_bottom = 86.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_default_cursor_shape = 2
@@ -65,24 +74,29 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -104.0
+offset_left = -88.0
 offset_top = -66.0
-offset_right = 120.0
-offset_bottom = 30.0
+offset_right = 88.0
+offset_bottom = 38.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_0457x")
-theme_override_colors/default_color = Color(0.933333, 0.25098, 0.286275, 1)
-theme_override_constants/outline_size = 10
+theme_override_colors/default_color = Color(1, 1, 1, 1)
 text = " Welton Beck
  - tomwb1@gmail.com
  Efraim Marcatto
  - efraimmarcatto@gmail.com
  Beowulf
- - beowulfus.universum@gmail.com"
+ - beowulfus.universum@gmail.com
+ Jesong
+ - jefferson.adrian@gmail.com"
 
 [node name="ClickSound" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = ExtResource("7_xofxa")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_m48wl")
+autoplay = true
 
 [connection signal="pressed" from="CanvasLayer/BackButton" to="." method="_on_back_menu"]

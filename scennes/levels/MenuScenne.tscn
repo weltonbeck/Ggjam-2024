@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://dxe7bdit0ai40"]
 
 [ext_resource type="Script" path="res://scripts/MenuScript.gd" id="1_jx2ti"]
-[ext_resource type="Texture2D" uid="uid://dxspwcbnsn6us" path="res://sprites/hud/spr_title.png" id="2_6048f"]
+[ext_resource type="Texture2D" uid="uid://cemq4f3uwp88x" path="res://sprites/hud/title.png" id="2_bdice"]
 [ext_resource type="FontFile" uid="uid://bvlb5x6n1pny6" path="res://fonts/DigitalDisco.ttf" id="3_basou"]
 [ext_resource type="Texture2D" uid="uid://dh0ggkmuqi01f" path="res://sprites/hud/spr_botao.png" id="3_th034"]
 [ext_resource type="Texture2D" uid="uid://cqc0v8vfkmpo1" path="res://sprites/hud/spr_botao_hover.png" id="4_40418"]
@@ -29,9 +29,8 @@ script = ExtResource("1_jx2ti")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
-position = Vector2(160, 91)
-scale = Vector2(0.684259, 0.684259)
-texture = ExtResource("2_6048f")
+position = Vector2(160, 90)
+texture = ExtResource("2_bdice")
 
 [node name="StartGameButton" type="Button" parent="CanvasLayer"]
 anchors_preset = 8
@@ -40,9 +39,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -56.0
-offset_top = -42.0
+offset_top = -10.0
 offset_right = 56.0
-offset_bottom = -2.0
+offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_default_cursor_shape = 2
@@ -64,10 +63,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -56.0
-offset_top = -2.0
-offset_right = 56.0
-offset_bottom = 38.0
+offset_left = -136.0
+offset_top = 38.0
+offset_right = -24.0
+offset_bottom = 78.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_default_cursor_shape = 2
@@ -89,9 +88,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -56.0
+offset_left = 24.0
 offset_top = 38.0
-offset_right = 56.0
+offset_right = 136.0
 offset_bottom = 78.0
 grow_horizontal = 2
 grow_vertical = 2
