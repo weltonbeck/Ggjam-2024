@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dqvc6b3bhnbey"]
+[gd_scene load_steps=21 format=3 uid="uid://dqvc6b3bhnbey"]
 
 [ext_resource type="TileSet" uid="uid://dksqjpfo0rtq3" path="res://commons/Tileset.tres" id="1_o26b4"]
 [ext_resource type="PackedScene" uid="uid://ci038wthwjwqj" path="res://scennes/commons/HudScenne.tscn" id="2_x3reg"]
@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://do6e375ers0f" path="res://scennes/collectables/CatchablePieScenne.tscn" id="9_42r2c"]
 [ext_resource type="PackedScene" uid="uid://bjpvd11562r86" path="res://scennes/characters/EnemyScenne.tscn" id="10_t2igs"]
 [ext_resource type="PackedScene" uid="uid://8pfkass2yln2" path="res://scennes/collectables/CatchableDentureScenne.tscn" id="11_bsfg6"]
+[ext_resource type="PackedScene" uid="uid://bd05jr8je602s" path="res://scennes/commons/ChangeLevelScenne.tscn" id="13_my0cc"]
+[ext_resource type="PackedScene" uid="uid://cvegs25jmqvk5" path="res://scennes/levels/CreditsScenne.tscn" id="14_5psfs"]
 
 [sub_resource type="Curve2D" id="Curve2D_kt6hu"]
 _data = {
@@ -443,3 +445,7 @@ position = Vector2(848, -272)
 
 [node name="CatchablePie5" parent="catchable" instance=ExtResource("9_42r2c")]
 position = Vector2(496, -256)
+
+[node name="ChangeLevel" parent="." instance=ExtResource("13_my0cc")]
+position = Vector2(376, -296)
+levelFile = ExtResource("14_5psfs")
