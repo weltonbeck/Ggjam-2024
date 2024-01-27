@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dhg2ut8qcuniv"]
+[gd_scene load_steps=18 format=3 uid="uid://dhg2ut8qcuniv"]
 
 [ext_resource type="Script" path="res://scripts/StoryScreen.gd" id="1_bjmur"]
 [ext_resource type="FontFile" uid="uid://bj1e2m6mpqyl2" path="res://fonts/04B_03__.TTF" id="1_c4twh"]
@@ -8,6 +8,22 @@
 [ext_resource type="Texture2D" uid="uid://dh0ggkmuqi01f" path="res://sprites/hud/spr_botao.png" id="4_qth45"]
 [ext_resource type="Texture2D" uid="uid://cqc0v8vfkmpo1" path="res://sprites/hud/spr_botao_hover.png" id="5_2lyfr"]
 [ext_resource type="Texture2D" uid="uid://bko7dti7207hk" path="res://sprites/hud/spr_botao_click.png" id="6_32045"]
+[ext_resource type="AudioStream" uid="uid://b5agk15jno07a" path="res://sounds/start_screen.mp3" id="9_d5xun"]
+
+[sub_resource type="Animation" id="Animation_1a6x2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Text:visible_characters")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="Animation" id="Animation_hypu8"]
 resource_name = "Typing"
@@ -37,21 +53,6 @@ tracks/1/keys = {
 "args": [],
 "method": &"_on_skip_button_pressed"
 }]
-}
-
-[sub_resource type="Animation" id="Animation_1a6x2"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Text:visible_characters")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fesrl"]
@@ -164,5 +165,9 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_dxh1x")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_crlny")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_8j4x3")
 text = "Skip"
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_d5xun")
+autoplay = true
 
 [connection signal="pressed" from="SkipButton" to="." method="_on_skip_button_pressed"]
