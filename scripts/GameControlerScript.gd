@@ -5,6 +5,14 @@ signal hudTakeDamageSignal
 signal hudAddHappySignal
 signal hudDieSignal
 
+
+func _input(event):
+	if event.is_action_pressed("full_screen"):
+		if DisplayServer.window_get_mode() != DisplayServer.WINDOW_MODE_FULLSCREEN:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+		else:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
+
 func changeScenne(newScenne):
 	$TransitionCanvas/AnimationPlayer.play("fade_out")
 	await $TransitionCanvas/AnimationPlayer.animation_finished

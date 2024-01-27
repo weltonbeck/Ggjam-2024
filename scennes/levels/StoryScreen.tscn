@@ -1,0 +1,168 @@
+[gd_scene load_steps=17 format=3 uid="uid://dhg2ut8qcuniv"]
+
+[ext_resource type="Script" path="res://scripts/StoryScreen.gd" id="1_bjmur"]
+[ext_resource type="FontFile" uid="uid://bj1e2m6mpqyl2" path="res://fonts/04B_03__.TTF" id="1_c4twh"]
+[ext_resource type="Texture2D" uid="uid://dxspwcbnsn6us" path="res://sprites/hud/spr_title.png" id="2_4x8rq"]
+[ext_resource type="FontFile" uid="uid://bvlb5x6n1pny6" path="res://fonts/DigitalDisco.ttf" id="3_4bosj"]
+[ext_resource type="Texture2D" uid="uid://cptnnk5p0o44h" path="res://sprites/hud/textbox.png" id="3_66hgx"]
+[ext_resource type="Texture2D" uid="uid://dh0ggkmuqi01f" path="res://sprites/hud/spr_botao.png" id="4_qth45"]
+[ext_resource type="Texture2D" uid="uid://cqc0v8vfkmpo1" path="res://sprites/hud/spr_botao_hover.png" id="5_2lyfr"]
+[ext_resource type="Texture2D" uid="uid://bko7dti7207hk" path="res://sprites/hud/spr_botao_click.png" id="6_32045"]
+
+[sub_resource type="Animation" id="Animation_hypu8"]
+resource_name = "Typing"
+length = 65.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Text:visible_characters")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.5, 60),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 498]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(64),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_on_skip_button_pressed"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_1a6x2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Text:visible_characters")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fesrl"]
+_data = {
+"RESET": SubResource("Animation_1a6x2"),
+"Typing": SubResource("Animation_hypu8")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_s5gaq"]
+line_spacing = 0.0
+font = ExtResource("1_c4twh")
+font_size = 8
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ksqne"]
+texture = ExtResource("4_qth45")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dxh1x"]
+texture = ExtResource("5_2lyfr")
+texture_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_crlny"]
+texture = ExtResource("6_32045")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8j4x3"]
+
+[node name="StoryScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bjmur")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_4x8rq")
+expand_mode = 3
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_fesrl")
+}
+autoplay = "Typing"
+
+[node name="TextBackground" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.819608)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -140.0
+offset_top = -63.0
+offset_right = 152.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.950495, 2)
+texture = ExtResource("3_66hgx")
+
+[node name="Text" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 23.0
+offset_right = -26.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "No one knows how it spread, only that one day laughter was no longer possible. People shut down, became serious, there were no more smiles or laughter! Dentists lost their jobs, comedians were fired, pies were abandoned. Only executives walked the streets, worried about numbers, profits and shares. 
+
+Sad Pagliacci discovers his power: to make others laugh. Now he puts on his paint armor, and as a clown, he faces sadness, colors the world and distributes laughter and joy!"
+label_settings = SubResource("LabelSettings_s5gaq")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="SkipButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 102.0
+offset_top = 69.0
+offset_right = 214.0
+offset_bottom = 109.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_4bosj")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxTexture_ksqne")
+theme_override_styles/hover = SubResource("StyleBoxTexture_dxh1x")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_crlny")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8j4x3")
+text = "Skip"
+
+[connection signal="pressed" from="SkipButton" to="." method="_on_skip_button_pressed"]

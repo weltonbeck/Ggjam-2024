@@ -4,7 +4,7 @@ extends Node2D
 
 func _on_start_game():
 	await click_sound_play()
-	GameControler.changeScenne("res://scennes/levels/Level1Scenne.tscn")
+	GameControler.changeScenne("res://scennes/levels/StoryScreen.tscn")
 
 func _on_quit_game():
 	await click_sound_play()
