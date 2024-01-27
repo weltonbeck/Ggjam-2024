@@ -7,6 +7,7 @@ extends CharacterBody2D
 @export var flipped = true
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var looking = $Looking
+@onready var laugh = $Laugh
 
 @onready var collision_shape_2d = $CollisionShape2D
 @onready var hit_box_collision = $HitBox/CollisionShape2D
@@ -57,6 +58,7 @@ func die():
 	GameControler.hudAddHappy()
 	animated_sprite_2d.play("clowning")
 	await animated_sprite_2d.animation_finished
+	laugh.play()
 	animated_sprite_2d.play("clown_idle")
 
 
@@ -65,3 +67,9 @@ func _on_looking_body_entered(_body):
 		animated_sprite_2d.play("scared")
 		await animated_sprite_2d.animation_finished
 		set_walking(true)
+
+
+func _on_visible_on_screen_notifier_2d_screen_entered():
+	if dead:
+		laugh.play()
+

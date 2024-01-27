@@ -1,7 +1,7 @@
 extends Node2D
 
 var tickets = 0
-
+var level_musics = [preload("res://sounds/level1_music.mp3")]
 var heart_on = preload("res://sprites/hud/hud-heart-on.png")
 var heart_off = preload("res://sprites/hud/hud-heart-off.png")
 
@@ -11,10 +11,17 @@ var life = 4
 var max_happy = 5
 var happy = 0
 @onready var happyTween
-
+@onready var music_level = $MusicLevel
 @onready var player = get_tree().get_nodes_in_group("Player")[0]
+@onready var music_index = int(get_parent().get_parent().name.split("Level")[1]) 
+@onready var full_bar_sound = $FullBarSound
 
 func _ready():
+
+	if music_index and music_index != 0:
+		music_level.stream = level_musics[music_index-1]
+		music_level.play()
+
 	life = max_life
 	tickets = 0
 	happy = 0
@@ -57,6 +64,7 @@ func _process(_delta):
 	$GrayscaleCanvas/ColorRect.material.set("shader_parameter/holeCenter", player.get_global_transform_with_canvas().origin)
 
 func addLife():
+	full_bar_sound.play()
 	if life < max_life:
 		life += 1
 	renderHearts()

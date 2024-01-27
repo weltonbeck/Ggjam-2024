@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ci038wthwjwqj"]
+[gd_scene load_steps=12 format=3 uid="uid://ci038wthwjwqj"]
 
 [ext_resource type="Script" path="res://scripts/HudScript.gd" id="1_wbqrc"]
 [ext_resource type="FontFile" uid="uid://bvlb5x6n1pny6" path="res://fonts/DigitalDisco.ttf" id="2_tdhah"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bo41sb62m1ru0" path="res://sprites/hud/happy_bar_over.png" id="5_4ti40"]
 [ext_resource type="Texture2D" uid="uid://j6t4kwa64tdr" path="res://sprites/hud/happy_bar_progress.png" id="6_agsoj"]
 [ext_resource type="Texture2D" uid="uid://pa0lhj4ldniv" path="res://sprites/hud/happy_bar_icon.png" id="7_t5a32"]
+[ext_resource type="AudioStream" uid="uid://b1onj6hm0noxf" path="res://sounds/fullbar.wav" id="9_xhrwd"]
 
 [sub_resource type="Theme" id="Theme_iamds"]
 default_font = ExtResource("2_tdhah")
@@ -81,3 +82,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_lock_ = true
+
+[node name="MusicLevel" type="AudioStreamPlayer" parent="."]
+
+[node name="FullBarSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_xhrwd")

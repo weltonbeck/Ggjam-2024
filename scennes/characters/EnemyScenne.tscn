@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://bjpvd11562r86"]
+[gd_scene load_steps=42 format=3 uid="uid://bjpvd11562r86"]
 
 [ext_resource type="Texture2D" uid="uid://mjvrgmy45c3o" path="res://sprites/enemy/inimigo_hurt.png" id="1_ds5up"]
 [ext_resource type="Script" path="res://scripts/EnemyScript.gd" id="1_kcm6q"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dp8afxu2il4ks" path="res://sprites/enemy/inimigo_walking.png" id="3_2vrfp"]
 [ext_resource type="Texture2D" uid="uid://by1hmltv0ub02" path="res://sprites/enemy/inimigo_death.png" id="3_l2jco"]
 [ext_resource type="Texture2D" uid="uid://q0d2ilnuj0xm" path="res://sprites/enemy/inimigo_idle_bravo(viu o player).png" id="4_ijyj2"]
+[ext_resource type="AudioStream" uid="uid://oa76ebjw5tvp" path="res://sounds/new_laugh.wav" id="8_sr0v5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gw0yl"]
 atlas = ExtResource("2_xgka4")
@@ -290,6 +291,13 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Looking"]
 shape = SubResource("CircleShape2D_75c85")
 
+[node name="Laugh" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_sr0v5")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
 [connection signal="area_entered" from="HitBox" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="HitBox" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Looking" to="." method="_on_looking_body_entered"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
