@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://cfesdyp3bvgey"]
+[gd_scene load_steps=69 format=3 uid="uid://cfesdyp3bvgey"]
 
 [ext_resource type="Script" path="res://scripts/PlayerScript.gd" id="1_2py5h"]
 [ext_resource type="Texture2D" uid="uid://e3ma4be6pw6w" path="res://sprites/characters/palhacito_idle_piscando.png" id="2_x6rmm"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cr1cs32u2ftes" path="res://sprites/characters/palhacito_pulo&caindo.png" id="4_d4u0k"]
 [ext_resource type="AudioStream" uid="uid://6gaaqwtmb8ic" path="res://sounds/catch.wav" id="9_ebcu1"]
 [ext_resource type="AudioStream" uid="uid://e85hhpkyllef" path="res://sounds/damage.wav" id="9_ifvbq"]
+[ext_resource type="AudioStream" uid="uid://cjlyvx4tkuxwj" path="res://sounds/jump.wav" id="10_ottfj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gao0y"]
 atlas = ExtResource("4_d4u0k")
@@ -488,6 +489,7 @@ position = Vector2(0, -14)
 stream = ExtResource("9_ebcu1")
 
 [node name="JumpSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_ottfj")
 
 [node name="DamageSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_ifvbq")
