@@ -619,7 +619,7 @@ walking = false
 position = Vector2(952, 96)
 
 [node name="Player" parent="." instance=ExtResource("10_rwpnh")]
-position = Vector2(344, -704)
+position = Vector2(72, 112)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, -40)

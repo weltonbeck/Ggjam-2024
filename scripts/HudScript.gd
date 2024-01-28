@@ -72,15 +72,15 @@ func addLife():
 	renderHearts()
 
 func addHappy():
-	if happy == max_happy:
-		full_bar_sound.play()
-		happy = 0
+	if happy >= max_happy:
 		onGetTicket(10)
-		await full_bar_sound.finished
 		addLife()
-	happy += 1
-	$CanvasLayer/HappyBar/TextureProgressBar.value = happy
-			
+	else:
+		happy += 1
+		if happy >= max_happy:
+			full_bar_sound.play()
+		$CanvasLayer/HappyBar/TextureProgressBar.value = happy
+
 	updateGrayscaleValues()
 	
 func updateGrayscaleValues():
