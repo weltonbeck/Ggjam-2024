@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://b3tka2hokabms"]
+[gd_scene load_steps=25 format=3 uid="uid://b3tka2hokabms"]
 
 [ext_resource type="TileSet" uid="uid://dksqjpfo0rtq3" path="res://commons/Tileset.tres" id="1_1buty"]
 [ext_resource type="PackedScene" uid="uid://ci038wthwjwqj" path="res://scennes/commons/HudScenne.tscn" id="2_nel8f"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://nhreydpr55f8" path="res://scennes/commons/PlatformerScenne.tscn" id="6_vpsdv"]
 [ext_resource type="PackedScene" uid="uid://cu2egtu013fty" path="res://scennes/commons/CoilSpringScenne.tscn" id="7_x82py"]
 [ext_resource type="PackedScene" uid="uid://fcsueiwhey7l" path="res://scennes/collectables/CollectableScenne.tscn" id="8_ohx0d"]
+[ext_resource type="PackedScene" uid="uid://bvlchtw2ioefa" path="res://scennes/collectables/CatchableLifeScene.tscn" id="8_ovqn1"]
 [ext_resource type="PackedScene" uid="uid://bjpvd11562r86" path="res://scennes/characters/EnemyScenne.tscn" id="9_vp6n0"]
 [ext_resource type="PackedScene" uid="uid://cfesdyp3bvgey" path="res://scennes/characters/PlayerScenne.tscn" id="10_rwpnh"]
 [ext_resource type="PackedScene" uid="uid://8pfkass2yln2" path="res://scennes/collectables/CatchableDentureScenne.tscn" id="11_t31gm"]
@@ -184,12 +185,6 @@ position = Vector2(1416, 144)
 
 [node name="Spike23" parent="Hazards" instance=ExtResource("5_cmwmy")]
 position = Vector2(1400, 144)
-
-[node name="Spike24" parent="Hazards" instance=ExtResource("5_cmwmy")]
-position = Vector2(1448, 144)
-
-[node name="Spike26" parent="Hazards" instance=ExtResource("5_cmwmy")]
-position = Vector2(1464, 144)
 
 [node name="Spike25" parent="Hazards" instance=ExtResource("5_cmwmy")]
 position = Vector2(1432, 144)
@@ -594,6 +589,12 @@ position = Vector2(912, 64)
 
 [node name="Collectable15" parent="Collectables" instance=ExtResource("8_ohx0d")]
 position = Vector2(1000, 64)
+
+[node name="CatchableLifeScenne" parent="Collectables" instance=ExtResource("8_ovqn1")]
+position = Vector2(1458, 130)
+
+[node name="CatchableLifeScenne2" parent="Collectables" instance=ExtResource("8_ovqn1")]
+position = Vector2(536, -660)
 
 [node name="enemy" type="Node2D" parent="."]
 
