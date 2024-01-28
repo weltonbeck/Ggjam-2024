@@ -15,6 +15,7 @@ var happy = 0
 @onready var player = get_tree().get_nodes_in_group("Player")[0]
 @onready var music_index = int(get_parent().get_parent().name.split("Level")[1]) 
 @onready var full_bar_sound = $FullBarSound
+@onready var get_life_sound = $GetLifeSound
 
 func _ready():
 
@@ -27,6 +28,7 @@ func _ready():
 	happy = 0
 	$CanvasLayer/RichTextLabel.text = str(tickets).pad_zeros(4)
 	GameControler.hudGetTicketSignal.connect(onGetTicket)
+	GameControler.hudGetLifeSignal.connect(addLife)
 	GameControler.hudTakeDamageSignal.connect(takeDamage)
 	GameControler.hudAddHappySignal.connect(addHappy)
 	GameControler.hudDieSignal.connect(gameOver)
@@ -64,15 +66,17 @@ func _process(_delta):
 	$GrayscaleCanvas/ColorRect.material.set("shader_parameter/holeCenter", player.get_global_transform_with_canvas().origin)
 
 func addLife():
-	full_bar_sound.play()
+	get_life_sound.play()
 	if life < max_life:
 		life += 1
 	renderHearts()
 
 func addHappy():
 	if happy == max_happy:
+		full_bar_sound.play()
 		happy = 0
 		onGetTicket(10)
+		await full_bar_sound.finished
 		addLife()
 	happy += 1
 	$CanvasLayer/HappyBar/TextureProgressBar.value = happy

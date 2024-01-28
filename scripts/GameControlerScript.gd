@@ -1,6 +1,7 @@
 extends Node2D
 
 signal hudGetTicketSignal
+signal hudGetLifeSignal
 signal hudTakeDamageSignal
 signal hudAddHappySignal
 signal hudDieSignal
@@ -23,6 +24,9 @@ func changeScenne(newScenne):
 	
 func hudGetTicket():
 	emit_signal("hudGetTicketSignal")
+	
+func hudGetLife():
+	emit_signal("hudGetLifeSignal")
 	
 func hudTakeDamage():
 	emit_signal("hudTakeDamageSignal")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dqvc6b3bhnbey"]
+[gd_scene load_steps=22 format=3 uid="uid://dqvc6b3bhnbey"]
 
 [ext_resource type="TileSet" uid="uid://dksqjpfo0rtq3" path="res://commons/Tileset.tres" id="1_o26b4"]
 [ext_resource type="PackedScene" uid="uid://ci038wthwjwqj" path="res://scennes/commons/HudScenne.tscn" id="2_x3reg"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://8pfkass2yln2" path="res://scennes/collectables/CatchableDentureScenne.tscn" id="11_bsfg6"]
 [ext_resource type="PackedScene" uid="uid://bd05jr8je602s" path="res://scennes/commons/ChangeLevelScenne.tscn" id="13_my0cc"]
 [ext_resource type="PackedScene" uid="uid://cvegs25jmqvk5" path="res://scennes/levels/CreditsScenne.tscn" id="14_5psfs"]
+[ext_resource type="PackedScene" uid="uid://bvlchtw2ioefa" path="res://scennes/collectables/CatchableLifeScene.tscn" id="15_24ajl"]
 
 [sub_resource type="Curve2D" id="Curve2D_kt6hu"]
 _data = {
@@ -373,6 +374,9 @@ position = Vector2(960, 80)
 
 [node name="Collectable8" parent="Collectables" instance=ExtResource("4_q07ms")]
 position = Vector2(720, 88)
+
+[node name="CatchableLifeScenne" parent="Collectables" instance=ExtResource("15_24ajl")]
+position = Vector2(1760, -160)
 
 [node name="enemy" type="Node2D" parent="."]
 
