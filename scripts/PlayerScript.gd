@@ -10,6 +10,11 @@ var jump_strength
 @onready var jump_sound = $JumpSound
 @onready var damage_sound = $DamageSound
 @onready var catch_sound = $CatchSound
+@onready var animated_sprite_2d = $AnimatedSprite2D
+@onready var coyote_timer = $CoyoteTimer
+@onready var jump_buffering_timer = $JumpBufferingTimer
+@onready var collision_shape_2d = $CollisionShape2D
+
 
 var can_move = true
 var can_jump = false
@@ -21,18 +26,18 @@ var coyote = false
 @export_flags_2d_physics var pass_through_layers = 3
 
 var holdItem = false
-signal pickItem
-signal dropItem
+signal pick_item
+signal drop_item
 
 var intangible = false
-var intangibleTime = 1
+var intangible_time = 1
 
 enum {
 	IDLE, WALK, JUMP, FALL, PICK
 }
 
 var status = IDLE
-var isDie = false
+var is_dead = false
 
 
 func _ready():
@@ -40,25 +45,24 @@ func _ready():
 	gravity = (jump_height * 2) / pow(max_time_to_peak, 2)
 
 func _physics_process(delta):
-	if !isDie:
+	if !is_dead:
 		velocity.y += gravity * delta
 		if can_move:
 			walk()
 			jump()
-	
 		pass_through()
 		pick()
 	
 		move_and_slide()
 	
 	animation()
-	fallDie()
+	fall_death()
 	
 func walk():
 		var direction = Input.get_axis("ui_left", "ui_right")
 		#flip
 		if direction != 0:
-			$AnimatedSprite2D.flip_h = direction == -1
+			animated_sprite_2d.flip_h = direction == -1
 		if direction:
 			velocity.x = lerp(velocity.x, direction * speed, AIR_FRICTION)
 			if is_on_floor() && status != JUMP && status != FALL:
@@ -75,22 +79,22 @@ func jump():
 		coyote = false
 	elif !is_on_floor() && can_jump && !coyote:
 		coyote = true
-		$CoyoteTimer.stop()
-		$CoyoteTimer.start(coyote_time)
+		coyote_timer.stop()
+		coyote_timer.start(coyote_time)
 		
-	elif !is_on_floor() && coyote && $CoyoteTimer.is_stopped():
+	elif !is_on_floor() && coyote && coyote_timer.is_stopped():
 		can_jump = false
 		
 	#jump
 	if Input.is_action_just_pressed("ui_jump"):
 		jump_sound.play()
 		wait_jump = true
-		$JumpBufferingTimer.start(jump_buffering_time)
-	if $JumpBufferingTimer.is_stopped():
+		jump_buffering_timer.start(jump_buffering_time)
+	if jump_buffering_timer.is_stopped():
 		wait_jump = false
 		
 	if wait_jump && can_jump:
-		forceJump(jump_strength)
+		force_jump(jump_strength)
 		
 	# cancel jump
 	if Input.is_action_just_released("ui_jump") && !is_on_floor() && velocity.y < 0.0:
@@ -99,7 +103,7 @@ func jump():
 	if !is_on_floor() && velocity.y > 0:
 		status = FALL
 		
-func forceJump(strength):
+func force_jump(strength):
 	status = JUMP
 	velocity.y = strength
 	can_jump = false
@@ -119,64 +123,64 @@ func pick():
 		can_move = false
 		velocity.x = 0
 		status = PICK
-		emit_signal("pickItem")
+		emit_signal("pick_item")
 	if status == PICK && !is_on_floor():
 		status = FALL
 		
 	if Input.is_action_just_released("ui_pick"):
-		emit_signal("dropItem")
+		emit_signal("drop_item")
 		holdItem = false
 
 func animation():
 	if status == IDLE:
 		if holdItem:
-			$AnimatedSprite2D.play("hold_idle")
+			animated_sprite_2d.play("hold_idle")
 		else:
-			$AnimatedSprite2D.play("idle")
+			animated_sprite_2d.play("idle")
 	elif status == WALK:
 		if holdItem:
-			$AnimatedSprite2D.play("hold_walk")
+			animated_sprite_2d.play("hold_walk")
 		else:
-			$AnimatedSprite2D.play("walk")
-	elif status == JUMP && $AnimatedSprite2D.animation != "jump":
+			animated_sprite_2d.play("walk")
+	elif status == JUMP && animated_sprite_2d.animation != "jump":
 		if holdItem:
-			$AnimatedSprite2D.play("hold_jump")
+			animated_sprite_2d.play("hold_jump")
 		else:
-			$AnimatedSprite2D.play("jump")
+			animated_sprite_2d.play("jump")
 	elif status == FALL && is_on_floor():
 		if holdItem:
-			$AnimatedSprite2D.play("hold_grounded")
+			animated_sprite_2d.play("hold_grounded")
 		else:
-			$AnimatedSprite2D.play("grounded")
-		await $AnimatedSprite2D.animation_finished
+			animated_sprite_2d.play("grounded")
+		await animated_sprite_2d.animation_finished
 		status = IDLE
 	elif status == FALL:
-		if $AnimatedSprite2D.animation == "jump" || $AnimatedSprite2D.animation == "hold_jump":
-			await $AnimatedSprite2D.animation_finished
+		if animated_sprite_2d.animation == "jump" || animated_sprite_2d.animation == "hold_jump":
+			await animated_sprite_2d.animation_finished
 		if holdItem:
-			$AnimatedSprite2D.play("hold_fall")
+			animated_sprite_2d.play("hold_fall")
 		else:
-			$AnimatedSprite2D.play("fall")
+			animated_sprite_2d.play("fall")
 	elif status == PICK:
-		$AnimatedSprite2D.play("pick")
-		await $AnimatedSprite2D.animation_finished
+		animated_sprite_2d.play("pick")
+		await animated_sprite_2d.animation_finished
 		can_move = true
 		status = IDLE
 
-func takeDamage():
+func take_damage():
 	if can_move:
 		damage_sound.play()
 	if !intangible:
-		GameControler.hudTakeDamage()
+		GameControler.hud_take_damage()
 		intangible = true
 		var tween = get_tree().create_tween().set_loops()
-		tween.tween_property($AnimatedSprite2D, "modulate", Color(0.89, 0.267, 0), 0.3)
-		tween.tween_property($AnimatedSprite2D, "modulate", Color(1,1, 1), 0.3)
-		await get_tree().create_timer(intangibleTime).timeout
+		tween.tween_property(animated_sprite_2d, "modulate", Color(0.89, 0.267, 0), 0.3)
+		tween.tween_property(animated_sprite_2d, "modulate", Color(1,1, 1), 0.3)
+		await get_tree().create_timer(intangible_time).timeout
 		tween.stop()
-		$CollisionShape2D.disabled = true
-		$CollisionShape2D.disabled = false
-		$AnimatedSprite2D.modulate = Color(1, 1, 1)
+		collision_shape_2d.disabled = true
+		collision_shape_2d.disabled = false
+		animated_sprite_2d.modulate = Color(1, 1, 1)
 		intangible = false
 
 func die():
@@ -184,7 +188,7 @@ func die():
 	velocity.x = 0
 	can_move = false
 	
-func fallDie():
-	if position.y > 160 && !isDie:
-		isDie = true
-		GameControler.hudDie()
+func fall_death():
+	if position.y > 160 && !is_dead:
+		is_dead = true
+		GameControler.hud_die()

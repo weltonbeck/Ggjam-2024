@@ -1,19 +1,18 @@
-[gd_scene load_steps=25 format=3 uid="uid://b3tka2hokabms"]
+[gd_scene load_steps=24 format=3 uid="uid://b3tka2hokabms"]
 
 [ext_resource type="TileSet" uid="uid://dksqjpfo0rtq3" path="res://commons/Tileset.tres" id="1_1buty"]
-[ext_resource type="PackedScene" uid="uid://ci038wthwjwqj" path="res://scennes/commons/HudScenne.tscn" id="2_nel8f"]
-[ext_resource type="PackedScene" uid="uid://necpaxyych8j" path="res://scennes/commons/PauseMenuScenne.tscn" id="3_kkfvv"]
-[ext_resource type="PackedScene" uid="uid://bgx4c3p17e2m7" path="res://scennes/commons/spikeScenne.tscn" id="5_cmwmy"]
-[ext_resource type="PackedScene" uid="uid://nhreydpr55f8" path="res://scennes/commons/PlatformerScenne.tscn" id="6_vpsdv"]
-[ext_resource type="PackedScene" uid="uid://cu2egtu013fty" path="res://scennes/commons/CoilSpringScenne.tscn" id="7_x82py"]
-[ext_resource type="PackedScene" uid="uid://fcsueiwhey7l" path="res://scennes/collectables/CollectableScenne.tscn" id="8_ohx0d"]
-[ext_resource type="PackedScene" uid="uid://bvlchtw2ioefa" path="res://scennes/collectables/CatchableLifeScene.tscn" id="8_ovqn1"]
-[ext_resource type="PackedScene" uid="uid://bjpvd11562r86" path="res://scennes/characters/EnemyScenne.tscn" id="9_vp6n0"]
-[ext_resource type="PackedScene" uid="uid://cfesdyp3bvgey" path="res://scennes/characters/PlayerScenne.tscn" id="10_rwpnh"]
-[ext_resource type="PackedScene" uid="uid://8pfkass2yln2" path="res://scennes/collectables/CatchableDentureScenne.tscn" id="11_t31gm"]
-[ext_resource type="PackedScene" uid="uid://do6e375ers0f" path="res://scennes/collectables/CatchablePieScenne.tscn" id="12_fby5w"]
-[ext_resource type="PackedScene" uid="uid://bd05jr8je602s" path="res://scennes/commons/ChangeLevelScenne.tscn" id="13_ql8x2"]
-[ext_resource type="PackedScene" uid="uid://cvegs25jmqvk5" path="res://scennes/levels/CreditsScenne.tscn" id="14_1gtdt"]
+[ext_resource type="PackedScene" uid="uid://ci038wthwjwqj" path="res://scenes/commons/HudScene.tscn" id="2_nel8f"]
+[ext_resource type="PackedScene" uid="uid://necpaxyych8j" path="res://scenes/commons/PauseMenuScene.tscn" id="3_kkfvv"]
+[ext_resource type="PackedScene" uid="uid://bgx4c3p17e2m7" path="res://scenes/objects/SpikeScene.tscn" id="5_cmwmy"]
+[ext_resource type="PackedScene" uid="uid://nhreydpr55f8" path="res://scenes/objects/PlatformerScene.tscn" id="6_vpsdv"]
+[ext_resource type="PackedScene" uid="uid://cu2egtu013fty" path="res://scenes/objects/CoilSpringScene.tscn" id="7_x82py"]
+[ext_resource type="PackedScene" uid="uid://fcsueiwhey7l" path="res://scenes/collectables/CollectableScene.tscn" id="8_ohx0d"]
+[ext_resource type="PackedScene" uid="uid://bjpvd11562r86" path="res://scenes/enemies/OfficeManScene.tscn" id="9_vp6n0"]
+[ext_resource type="PackedScene" uid="uid://cfesdyp3bvgey" path="res://scenes/characters/PlayerScene.tscn" id="10_rwpnh"]
+[ext_resource type="PackedScene" uid="uid://8pfkass2yln2" path="res://scenes/collectables/CatchableDentureScene.tscn" id="11_t31gm"]
+[ext_resource type="PackedScene" uid="uid://do6e375ers0f" path="res://scenes/collectables/CatchablePieScene.tscn" id="12_fby5w"]
+[ext_resource type="PackedScene" uid="uid://bd05jr8je602s" path="res://scenes/commons/ChangeLevelScene.tscn" id="13_ql8x2"]
+[ext_resource type="PackedScene" uid="uid://cvegs25jmqvk5" path="res://scenes/commons/CreditsScene.tscn" id="14_1gtdt"]
 
 [sub_resource type="Curve2D" id="Curve2D_kt6hu"]
 _data = {
@@ -95,7 +94,7 @@ _data = {
 }
 point_count = 2
 
-[node name="Level1" type="Node2D"]
+[node name="Level2" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="." groups=["Floor"]]
 tile_set = ExtResource("1_1buty")
@@ -185,6 +184,12 @@ position = Vector2(1416, 144)
 
 [node name="Spike23" parent="Hazards" instance=ExtResource("5_cmwmy")]
 position = Vector2(1400, 144)
+
+[node name="Spike24" parent="Hazards" instance=ExtResource("5_cmwmy")]
+position = Vector2(1448, 144)
+
+[node name="Spike26" parent="Hazards" instance=ExtResource("5_cmwmy")]
+position = Vector2(1464, 144)
 
 [node name="Spike25" parent="Hazards" instance=ExtResource("5_cmwmy")]
 position = Vector2(1432, 144)
@@ -355,51 +360,51 @@ libraries = {
 }
 autoplay = "platformer"
 
-[node name="others" type="Node2D" parent="."]
+[node name="Others" type="Node2D" parent="."]
 
-[node name="CoilSpring" parent="others" instance=ExtResource("7_x82py")]
+[node name="CoilSpring" parent="Others" instance=ExtResource("7_x82py")]
 position = Vector2(728, 88)
 
-[node name="CoilSpring2" parent="others" instance=ExtResource("7_x82py")]
+[node name="CoilSpring2" parent="Others" instance=ExtResource("7_x82py")]
 position = Vector2(1240, -88)
 
-[node name="CoilSpring13" parent="others" instance=ExtResource("7_x82py")]
+[node name="CoilSpring13" parent="Others" instance=ExtResource("7_x82py")]
 position = Vector2(1040, -176)
 
-[node name="CoilSpring4" parent="others" instance=ExtResource("7_x82py")]
+[node name="CoilSpring4" parent="Others" instance=ExtResource("7_x82py")]
 position = Vector2(936, -344)
 
-[node name="CoilSpring5" parent="others" instance=ExtResource("7_x82py")]
+[node name="CoilSpring5" parent="Others" instance=ExtResource("7_x82py")]
 position = Vector2(920, -344)
 
-[node name="CoilSpring6" parent="others" instance=ExtResource("7_x82py")]
+[node name="CoilSpring6" parent="Others" instance=ExtResource("7_x82py")]
 position = Vector2(904, -344)
 
-[node name="CoilSpring7" parent="others" instance=ExtResource("7_x82py")]
+[node name="CoilSpring7" parent="Others" instance=ExtResource("7_x82py")]
 position = Vector2(888, -344)
 
-[node name="CoilSpring8" parent="others" instance=ExtResource("7_x82py")]
+[node name="CoilSpring8" parent="Others" instance=ExtResource("7_x82py")]
 position = Vector2(872, -344)
 
-[node name="CoilSpring9" parent="others" instance=ExtResource("7_x82py")]
+[node name="CoilSpring9" parent="Others" instance=ExtResource("7_x82py")]
 position = Vector2(856, -344)
 
-[node name="CoilSpring10" parent="others" instance=ExtResource("7_x82py")]
+[node name="CoilSpring10" parent="Others" instance=ExtResource("7_x82py")]
 position = Vector2(840, -344)
 
-[node name="CoilSpring11" parent="others" instance=ExtResource("7_x82py")]
+[node name="CoilSpring11" parent="Others" instance=ExtResource("7_x82py")]
 position = Vector2(808, -360)
 
-[node name="CoilSpring12" parent="others" instance=ExtResource("7_x82py")]
+[node name="CoilSpring12" parent="Others" instance=ExtResource("7_x82py")]
 position = Vector2(792, -440)
 
-[node name="CoilSpring15" parent="others" instance=ExtResource("7_x82py")]
+[node name="CoilSpring15" parent="Others" instance=ExtResource("7_x82py")]
 position = Vector2(336, -600)
 
-[node name="CoilSpring14" parent="others" instance=ExtResource("7_x82py")]
+[node name="CoilSpring14" parent="Others" instance=ExtResource("7_x82py")]
 position = Vector2(536, -536)
 
-[node name="CoilSpring3" parent="others" instance=ExtResource("7_x82py")]
+[node name="CoilSpring3" parent="Others" instance=ExtResource("7_x82py")]
 position = Vector2(1112, 136)
 
 [node name="Collectables" type="Node2D" parent="."]
@@ -590,33 +595,27 @@ position = Vector2(912, 64)
 [node name="Collectable15" parent="Collectables" instance=ExtResource("8_ohx0d")]
 position = Vector2(1000, 64)
 
-[node name="CatchableLifeScenne" parent="Collectables" instance=ExtResource("8_ovqn1")]
-position = Vector2(1458, 130)
+[node name="Enemies" type="Node2D" parent="."]
 
-[node name="CatchableLifeScenne2" parent="Collectables" instance=ExtResource("8_ovqn1")]
-position = Vector2(536, -660)
-
-[node name="enemy" type="Node2D" parent="."]
-
-[node name="Enemy" parent="enemy" instance=ExtResource("9_vp6n0")]
+[node name="Enemy" parent="Enemies" instance=ExtResource("9_vp6n0")]
 position = Vector2(488, 112)
 walking = false
 
-[node name="Enemy2" parent="enemy" instance=ExtResource("9_vp6n0")]
+[node name="Enemy2" parent="Enemies" instance=ExtResource("9_vp6n0")]
 position = Vector2(1000, 96)
 
-[node name="Enemy3" parent="enemy" instance=ExtResource("9_vp6n0")]
+[node name="Enemy3" parent="Enemies" instance=ExtResource("9_vp6n0")]
 position = Vector2(1048, 96)
 
-[node name="Enemy5" parent="enemy" instance=ExtResource("9_vp6n0")]
+[node name="Enemy5" parent="Enemies" instance=ExtResource("9_vp6n0")]
 position = Vector2(1200, -169)
 walking = false
 
-[node name="Enemy6" parent="enemy" instance=ExtResource("9_vp6n0")]
+[node name="Enemy6" parent="Enemies" instance=ExtResource("9_vp6n0")]
 position = Vector2(368, -592)
 walking = false
 
-[node name="Enemy4" parent="enemy" instance=ExtResource("9_vp6n0")]
+[node name="Enemy4" parent="Enemies" instance=ExtResource("9_vp6n0")]
 position = Vector2(952, 96)
 
 [node name="Player" parent="." instance=ExtResource("10_rwpnh")]
@@ -634,27 +633,27 @@ drag_bottom_margin = 0.1
 editor_draw_drag_margin = true
 metadata/_edit_lock_ = true
 
-[node name="catchable" type="Node2D" parent="."]
+[node name="Catchables" type="Node2D" parent="."]
 
-[node name="CatchableDenture" parent="catchable" instance=ExtResource("11_t31gm")]
+[node name="CatchableDenture" parent="Catchables" instance=ExtResource("11_t31gm")]
 position = Vector2(888, 112)
 
-[node name="CatchableDenture2" parent="catchable" instance=ExtResource("11_t31gm")]
+[node name="CatchableDenture2" parent="Catchables" instance=ExtResource("11_t31gm")]
 position = Vector2(824, 112)
 
-[node name="CatchableDenture3" parent="catchable" instance=ExtResource("11_t31gm")]
+[node name="CatchableDenture3" parent="Catchables" instance=ExtResource("11_t31gm")]
 position = Vector2(1184, -19)
 
-[node name="CatchablePie" parent="catchable" instance=ExtResource("12_fby5w")]
+[node name="CatchablePie" parent="Catchables" instance=ExtResource("12_fby5w")]
 position = Vector2(232, 96)
 
-[node name="CatchablePie2" parent="catchable" instance=ExtResource("12_fby5w")]
+[node name="CatchablePie2" parent="Catchables" instance=ExtResource("12_fby5w")]
 position = Vector2(856, 112)
 
-[node name="CatchablePie3" parent="catchable" instance=ExtResource("12_fby5w")]
+[node name="CatchablePie3" parent="Catchables" instance=ExtResource("12_fby5w")]
 position = Vector2(712, -512)
 
-[node name="CatchablePie4" parent="catchable" instance=ExtResource("12_fby5w")]
+[node name="CatchablePie4" parent="Catchables" instance=ExtResource("12_fby5w")]
 position = Vector2(464, -578)
 
 [node name="ChangeLevel" parent="." instance=ExtResource("13_ql8x2")]

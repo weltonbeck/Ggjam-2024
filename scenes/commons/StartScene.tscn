@@ -1,36 +1,36 @@
 [gd_scene load_steps=14 format=3 uid="uid://dxe7bdit0ai40"]
 
-[ext_resource type="Script" path="res://scripts/MenuScript.gd" id="1_jx2ti"]
-[ext_resource type="Texture2D" uid="uid://cemq4f3uwp88x" path="res://sprites/hud/title.png" id="2_bdice"]
-[ext_resource type="FontFile" uid="uid://bvlb5x6n1pny6" path="res://fonts/DigitalDisco.ttf" id="3_basou"]
-[ext_resource type="Texture2D" uid="uid://dh0ggkmuqi01f" path="res://sprites/hud/spr_botao.png" id="3_th034"]
-[ext_resource type="Texture2D" uid="uid://cqc0v8vfkmpo1" path="res://sprites/hud/spr_botao_hover.png" id="4_40418"]
-[ext_resource type="Texture2D" uid="uid://bko7dti7207hk" path="res://sprites/hud/spr_botao_click.png" id="5_tqe3o"]
-[ext_resource type="AudioStream" uid="uid://b7rfn0tdel1qv" path="res://sounds/click.wav" id="7_6frkx"]
-[ext_resource type="AudioStream" uid="uid://b5agk15jno07a" path="res://sounds/start_screen.mp3" id="8_o3byc"]
+[ext_resource type="Script" path="res://scripts/MenuScript.gd" id="1_0d35e"]
+[ext_resource type="Texture2D" uid="uid://cemq4f3uwp88x" path="res://sprites/hud/title.png" id="2_uh8as"]
+[ext_resource type="FontFile" uid="uid://bvlb5x6n1pny6" path="res://fonts/DigitalDisco.ttf" id="3_ry1yj"]
+[ext_resource type="Texture2D" uid="uid://dh0ggkmuqi01f" path="res://sprites/hud/spr_botao.png" id="4_16777"]
+[ext_resource type="Texture2D" uid="uid://cqc0v8vfkmpo1" path="res://sprites/hud/spr_botao_hover.png" id="5_v5hmm"]
+[ext_resource type="Texture2D" uid="uid://bko7dti7207hk" path="res://sprites/hud/spr_botao_click.png" id="6_5fh42"]
+[ext_resource type="AudioStream" uid="uid://b7rfn0tdel1qv" path="res://sounds/click.wav" id="7_ndsqj"]
+[ext_resource type="AudioStream" uid="uid://b5agk15jno07a" path="res://sounds/start_screen.mp3" id="8_px7pj"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yrflv"]
-texture = ExtResource("3_th034")
+texture = ExtResource("4_16777")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c61xw"]
-texture = ExtResource("4_40418")
+texture = ExtResource("5_v5hmm")
 texture_margin_bottom = 5.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_re7jv"]
-texture = ExtResource("5_tqe3o")
+texture = ExtResource("6_5fh42")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m7uas"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1lgv0"]
 
 [node name="MenuScenne" type="Node2D"]
-script = ExtResource("1_jx2ti")
+script = ExtResource("1_0d35e")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
 position = Vector2(160, 90)
-texture = ExtResource("2_bdice")
+texture = ExtResource("2_uh8as")
 
 [node name="StartGameButton" type="Button" parent="CanvasLayer"]
 anchors_preset = 8
@@ -49,7 +49,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_basou")
+theme_override_fonts/font = ExtResource("3_ry1yj")
 theme_override_font_sizes/font_size = 14
 theme_override_styles/normal = SubResource("StyleBoxTexture_yrflv")
 theme_override_styles/hover = SubResource("StyleBoxTexture_c61xw")
@@ -74,7 +74,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_basou")
+theme_override_fonts/font = ExtResource("3_ry1yj")
 theme_override_font_sizes/font_size = 14
 theme_override_styles/normal = SubResource("StyleBoxTexture_yrflv")
 theme_override_styles/hover = SubResource("StyleBoxTexture_c61xw")
@@ -99,7 +99,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_basou")
+theme_override_fonts/font = ExtResource("3_ry1yj")
 theme_override_font_sizes/font_size = 14
 theme_override_styles/normal = SubResource("StyleBoxTexture_yrflv")
 theme_override_styles/hover = SubResource("StyleBoxTexture_c61xw")
@@ -108,10 +108,10 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_1lgv0")
 text = "Quit Game"
 
 [node name="ClickSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_6frkx")
+stream = ExtResource("7_ndsqj")
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("8_o3byc")
+stream = ExtResource("8_px7pj")
 autoplay = true
 
 [connection signal="pressed" from="CanvasLayer/StartGameButton" to="." method="_on_start_game"]

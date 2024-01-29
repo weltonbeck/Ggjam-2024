@@ -16,79 +16,87 @@ var happy = 0
 @onready var music_index = int(get_parent().get_parent().name.split("Level")[1]) 
 @onready var full_bar_sound = $FullBarSound
 @onready var get_life_sound = $GetLifeSound
+@onready var happiness_progress = $CanvasLayer/HappinessBar/HappinessProgress
+@onready var points_label = $CanvasLayer/PointsLabel
+@onready var hearts = $CanvasLayer/Hearts
+@onready var gray_scale = $GrayscaleCanvas/GrayScale
+
+
+
 
 func _ready():
 
-	if music_index and music_index != 0:
+	if music_index and music_index != 0 and len(level_musics) >= music_index:
 		music_level.stream = level_musics[music_index-1]
-		music_level.play()
+	else:
+		music_level.stream = level_musics[0]
+
+	music_level.play()
 
 	life = max_life
 	tickets = 0
-	happy = 0
-	$CanvasLayer/RichTextLabel.text = str(tickets).pad_zeros(4)
-	GameControler.hudGetTicketSignal.connect(onGetTicket)
-	GameControler.hudGetLifeSignal.connect(addLife)
-	GameControler.hudTakeDamageSignal.connect(takeDamage)
-	GameControler.hudAddHappySignal.connect(addHappy)
-	GameControler.hudDieSignal.connect(gameOver)
+	points_label.text = str(tickets).pad_zeros(4)
+	GameControler.hud_get_ticket_signal.connect(on_get_ticket)
+	GameControler.hud_get_life_signal.connect(add_life)
+	GameControler.hud_take_damage_signal.connect(take_damage)
+	GameControler.hud_add_happy_signal.connect(add_appy)
+	GameControler.hud_die_signal.connect(game_over)
 	renderHearts()
-	
-	updateGrayscaleValues()
-	
-	$CanvasLayer/HappyBar/TextureProgressBar.max_value = max_happy
-	$CanvasLayer/HappyBar/TextureProgressBar.value = happy
+
+	update_grayscale_values()
+
+	happiness_progress.max_value = max_happy
+	happiness_progress.value = happy
 
 func renderHearts() :
-	for i in range($CanvasLayer/Hearts.get_child_count()):
+	for i in range(hearts.get_child_count()):
 		if i >= life :
-			$CanvasLayer/Hearts.get_child(i).set_texture(heart_off)
+			hearts.get_child(i).set_texture(heart_off)
 		else :
-			$CanvasLayer/Hearts.get_child(i).set_texture(heart_on)
+			hearts.get_child(i).set_texture(heart_on)
 
-func onGetTicket(value = 1):
+func on_get_ticket(value = 1):
 	tickets += value
-	$CanvasLayer/RichTextLabel.text = str(tickets).pad_zeros(4)
+	points_label.text = str(tickets).pad_zeros(4)
 	
-func takeDamage():
+func take_damage():
 	life -= 1
 	renderHearts()
 	if life <= 0:
-		gameOver()
+		game_over()
 
-func gameOver():
+func game_over():
 	if player:
 		player.die()
 		await get_tree().create_timer(0.2).timeout
-		GameControler.changeScenne("res://scennes/levels/CreditsScenne.tscn")
+		GameControler.change_scene("res://scenes/commons/CreditsScene.tscn")
 
 func _process(_delta):
-	$GrayscaleCanvas/ColorRect.material.set("shader_parameter/holeCenter", player.get_global_transform_with_canvas().origin)
+	gray_scale.material.set("shader_parameter/holeCenter", player.get_global_transform_with_canvas().origin)
 
-func addLife():
+func add_life():
 	get_life_sound.play()
 	if life < max_life:
 		life += 1
 	renderHearts()
 
-func addHappy():
+func add_appy():
 	if happy >= max_happy:
-		onGetTicket(10)
-		addLife()
+		on_get_ticket(10)
+		add_life()
 	else:
 		happy += 1
 		if happy >= max_happy:
 			full_bar_sound.play()
-		$CanvasLayer/HappyBar/TextureProgressBar.value = happy
-
-	updateGrayscaleValues()
+		happiness_progress.value = happy
+		update_grayscale_values()
 	
-func updateGrayscaleValues():
+func update_grayscale_values():
 	var max_value = (230 * (happy + 1)) / max_happy
 	var min_value = (200 * (happy + 1)) / max_happy
 	if happyTween:
 		happyTween.kill()
-	happyTween = get_tree().create_tween().set_loops()
+	happyTween = get_tree().create_tween()
 	happyTween.set_loops()
-	happyTween.tween_property($GrayscaleCanvas/ColorRect.material, "shader_parameter/holeRadius", max_value, 1)
-	happyTween.tween_property($GrayscaleCanvas/ColorRect.material, "shader_parameter/holeRadius", min_value, 1)
+	happyTween.tween_property(gray_scale.material, "shader_parameter/holeRadius", max_value, 1)
+	happyTween.tween_property(gray_scale.material, "shader_parameter/holeRadius", min_value, 1)

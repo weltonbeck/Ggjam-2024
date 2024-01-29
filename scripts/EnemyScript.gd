@@ -44,8 +44,8 @@ func _on_area_2d_area_entered(area):
 		die()
 
 func _on_area_2d_body_entered(body):
-	if body.is_in_group("Player") && body.has_method("takeDamage") and !dead:
-		body.takeDamage()
+	if body.is_in_group("Player") && body.has_method("take_damage") and !dead:
+		body.take_damage()
 		set_collision_mask_value(1, false)
 		die()
 
@@ -55,7 +55,7 @@ func set_walking(value):
 func die():
 	velocity.x = 0
 	dead = true
-	GameControler.hudAddHappy()
+	GameControler.hud_add_happy()
 	animated_sprite_2d.play("clowning")
 	await animated_sprite_2d.animation_finished
 	laugh.play()

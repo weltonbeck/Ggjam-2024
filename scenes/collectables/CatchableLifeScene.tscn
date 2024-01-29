@@ -1,7 +1,7 @@
 [gd_scene load_steps=65 format=3 uid="uid://bvlchtw2ioefa"]
 
 [ext_resource type="Texture2D" uid="uid://bbfhg35rqo0e8" path="res://sprites/collectables/healing_item.png" id="1_jx4gv"]
-[ext_resource type="Script" path="res://scripts/CatchableLifeScenne.gd" id="1_oabci"]
+[ext_resource type="Script" path="res://scripts/CatchableLifeScript.gd" id="1_oabci"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ft815"]
 atlas = ExtResource("1_jx4gv")

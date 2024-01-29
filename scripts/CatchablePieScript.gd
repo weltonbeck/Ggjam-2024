@@ -1,9 +1,11 @@
 extends "res://scripts/CatchableItemScript.gd"
 
+@onready var sprite_2d = $Sprite2D
+
 func onHurled(delta):
-	var sprite = $Sprite2D
-	var tween = sprite.create_tween().set_loops(1)
-	tween.tween_property(sprite, "rotation_degrees", direction * 90, 0.2)
+
+	var tween = sprite_2d.create_tween().set_loops(1)
+	tween.tween_property(sprite_2d, "rotation_degrees", direction * 90, 0.2)
 	var velocity = 150
 	position += transform.x * (direction * velocity) * delta
 

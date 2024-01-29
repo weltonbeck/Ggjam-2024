@@ -11,13 +11,13 @@ config_version=5
 [application]
 
 config/name="Clowned"
-run/main_scene="res://scennes/levels/MenuScenne.tscn"
+run/main_scene="res://scenes/commons/StartScene.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.png"
 
 [autoload]
 
-GameControler="*res://scennes/commons/GameControlerScenne.tscn"
+GameControler="*res://scenes/commons/GameControlerScene.tscn"
 
 [display]
 
@@ -105,3 +105,4 @@ full_screen={
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.643137, 0.776471, 0.901961, 1)

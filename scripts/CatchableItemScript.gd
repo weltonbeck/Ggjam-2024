@@ -9,8 +9,8 @@ var followPlayer = false
 
 func _ready():
 	if player:
-		player.pickItem.connect(pickItem)
-		player.dropItem.connect(dropItem)
+		player.pick_item.connect(pick_item)
+		player.drop_item.connect(drop_item)
 
 func _physics_process(delta):
 	if collected && player && player.get_node("PickMarker2D"):
@@ -32,12 +32,12 @@ func _physics_process(delta):
 func onHurled(_delta):
 	pass
 
-func pickItem():
+func pick_item():
 	if player && player.get_node("PickMarker2D") && playerHover && !hurled:
 		collected = true
 		player.holdItem = true
 		
-func dropItem():
+func drop_item():
 	if collected && playerHover:
 		collected = false
 		playerHover = false

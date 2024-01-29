@@ -8,6 +8,6 @@ func _on_body_entered(_body):
 		audio_collected.play()
 		collected = true
 		visible = false
-		GameControler.hudGetTicket()
+		GameControler.hud_get_ticket()
 		await audio_collected.finished
 		queue_free()

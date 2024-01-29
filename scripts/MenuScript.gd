@@ -4,7 +4,7 @@ extends Node2D
 
 func _on_start_game():
 	await click_sound_play()
-	GameControler.changeScenne("res://scennes/levels/StoryScreen.tscn")
+	GameControler.change_scene("res://scenes/commons/StoryScene.tscn")
 
 func _on_quit_game():
 	await click_sound_play()
@@ -12,11 +12,11 @@ func _on_quit_game():
 	
 func _on_back_menu():
 	await click_sound_play()
-	GameControler.changeScenne("res://scennes/levels/MenuScenne.tscn")
+	GameControler.change_scene("res://scenes/commons/StartScene.tscn")
 
 func _on_go_to_credits():
 	await click_sound_play()
-	GameControler.changeScenne("res://scennes/levels/CreditsScenne.tscn")
+	GameControler.change_scene("res://scenes/commons/CreditsScene.tscn")
 
 func click_sound_play():
 	click_sound.play()
